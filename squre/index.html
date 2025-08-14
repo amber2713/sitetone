@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Guo Moruo Square</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === CSS 部分：负责网站的外观和布局 === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cambria', serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c1220 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(80, 100, 200, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(150, 100, 200, 0.1) 0%, transparent 25%);
+            z-index: -1;
+        }
+        
+        .header {
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), 
+                         url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #0c1220, transparent);
+            z-index: 1;
+        }
+        
+        .header h1 {
+            color: #f8f8f8;
+            font-size: 4.5rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            letter-spacing: 3px;
+            text-align: center;
+            padding: 20px 40px;
+            background: rgba(10, 10, 30, 0.6);
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            padding: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .icon-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding: 30px 0;
+        }
+        
+        .left-icons {
+            align-items: flex-start;
+        }
+        
+        .right-icons {
+            align-items: flex-end;
+        }
+        
+        .icon-item {
+            text-align: center;
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .icon-item:nth-child(1) { animation-delay: 0.3s; }
+        .icon-item:nth-child(2) { animation-delay: 0.5s; }
+        
+        .icon-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .icon {
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .icon:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 205, 165, 0.4);
+        }
+        
+        .icon::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .icon:hover::before {
+            opacity: 1;
+        }
+        
+        .icon i {
+            font-size: 50px;
+            color: #e8cda5;
+            transition: all 0.3s ease;
+        }
+        
+        .icon:hover i {
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+        
+        .icon-label {
+            color: #c0c0c0;
+            font-size: 1.2rem;
+            letter-spacing: 0.8px;
+            margin-top: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cafe-icon {
+            background: linear-gradient(145deg, #4d2e1d, #3a2318);
+        }
+        
+        .cap-icon {
+            background: linear-gradient(145deg, #1d2e4d, #18233a);
+        }
+        
+        .figure-icon {
+            background: linear-gradient(145deg, #3d4d1d, #2e3a18);
+        }
+        
+        .map-icon {
+            background: linear-gradient(145deg, #4d1d2e, #3a1823);
+        }
+        
+        .dialogue-box {
+            background: linear-gradient(145deg, #1e1e2e, #2a2a3a);
+            border-radius: 20px;
+            padding: 45px 45px 70px;
+            margin: 30px 0;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dialogue-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 70%);
+            z-index: 0;
+        }
+        
+        .dialogue-content {
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dialogue-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #e8cda5;
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dialogue-text {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            text-align: justify;
+            color: #d0d0d0;
+            padding: 0 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .typewriter {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .typewriter-text {
+            overflow: hidden;
+            border-right: .15em solid #e8cda5;
+            white-space: pre-wrap;
+            margin: 0 auto;
+            letter-spacing: .05em;
+            animation: 
+                blink-caret .75s step-end infinite;
+        }
+        
+        .quote-mark {
+            font-size: 6rem;
+            color: rgba(232, 205, 165, 0.15);
+            position: absolute;
+            font-family: Georgia, serif;
+        }
+        
+        .quote-start {
+            top: 20px;
+            left: 30px;
+        }
+        
+        .quote-end {
+            bottom: 20px;
+            right: 30px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+        }
+        
+        .page-btn {
+            background: linear-gradient(to right, #4d2e1d, #3a2318);
+            color: #e8cda5;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .page-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        .page-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #5d3e2d, #4a3328);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .page-indicator {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .page-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(232, 205, 165, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .page-dot.active {
+            background: #e8cda5;
+            transform: scale(1.3);
+        }
+        
+        .file-structure {
+            background: rgba(20, 20, 40, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .file-structure h3 {
+            color: #e8cda5;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .file-structure pre {
+            background: rgba(10, 10, 20, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            color: #c0c0c0;
+            line-height: 1.5;
+        }
+        
+        .instructions {
+            background: rgba(20, 20, 40, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .instructions h3 {
+            color: #e8cda5;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .instructions ol {
+            padding-left: 30px;
+        }
+        
+        .instructions li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .instructions strong {
+            color: #e8cda5;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        @media (max-width: 1000px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .icon-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 40px;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+                padding: 15px 25px;
+            }
+            
+            .dialogue-box {
+                padding: 30px 30px 80px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+            }
+            50% {
+                transform: translateY(-15px);
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+            }
+            100% {
+                transform: translateY(0px);
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+            }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #e8cda5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Guo Moruo Square</h1>
+    </div>
+    
+    <div class="container">
+        <!-- Left Icons -->
+        <div class="icon-grid left-icons">
+            <div class="icon-item">
+                <a href="https://amber2713.github.io/siteone/cafe/" class="icon cafe-icon">
+                    <i class="fas fa-coffee"></i>
+                </a>
+                <div class="icon-label">Cafe & Lounge</div>
+            </div>
+            
+            <div class="icon-item">
+                <a href="https://tiny-faun-182022.netlify.app" class="icon map-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </a>
+                <div class="icon-label">Campus Map</div>
+            </div>
+        </div>
+        
+        <!-- Center Content -->
+        <div class="dialogue-box">
+            <div class="quote-mark quote-start">"</div>
+            <div class="dialogue-content">
+                <h2 class="dialogue-title">Memories of the Square</h2>
+                <div class="dialogue-text">
+                    <div class="typewriter">
+                        <div id="typewriter-text" class="typewriter-text"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-mark quote-end">"</div>
+            
+            <div class="pagination">
+                <button id="prevBtn" class="page-btn">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                
+                <div class="page-indicator">
+                    <div class="page-dot active" id="dot1"></div>
+                    <div class="page-dot" id="dot2"></div>
+                    <div class="page-dot" id="dot3"></div>
+                </div>
+                
+                <button id="nextBtn" class="page-btn">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Right Icons -->
+        <div class="icon-grid right-icons">
+            <div class="icon-item">
+                <a href="https://amber2713.github.io/siteone/gifted/" class="icon cap-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </a>
+                <div class="icon-label">Gifted Program</div>
+            </div>
+            
+            <div class="icon-item">
+                <a href="https://amber2713.github.io/siteone/figure/" class="icon figure-icon">
+                    <i class="fas fa-user-friends"></i>
+                </a>
+                <div class="icon-label">Student Profiles</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h3>CSS 和 JavaScript 文件的作用</h3>
+        <div class="explanation-container">
+            <div class="css-explanation">
+                <h4><i class="fas fa-paint-brush"></i> CSS 文件的作用</h4>
+                <ul>
+                    <li>控制网页的视觉样式和布局</li>
+                    <li>定义颜色、字体、间距等外观属性</li>
+                    <li>创建响应式设计以适应不同屏幕尺寸</li>
+                    <li>实现动画和过渡效果</li>
+                    <li>确保整个网站的风格一致性</li>
+                </ul>
+            </div>
+            
+            <div class="js-explanation">
+                <h4><i class="fas fa-code"></i> JavaScript 文件的作用</h4>
+                <ul>
+                    <li>实现网页的交互功能和动态行为</li>
+                    <li>处理用户事件（点击、悬停等）</li>
+                    <li>动态更新内容（如打字机效果）</li>
+                    <li>操作DOM元素（添加、删除、修改）</li>
+                    <li>执行计算和数据处理</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="file-structure">
+        <h3>推荐的文件结构</h3>
+        <pre>
+项目文件夹/
+├── index.html             # 主HTML文件
+├── images/                # 图片文件夹
+│   ├── background.jpg     # 您的背景图片
+│   └── ...                # 其他图片资源
+├── css/                   # CSS文件夹
+│   └── styles.css         # 样式文件
+└── js/                    # JavaScript文件夹
+    └── scripts.js         # 脚本文件
+        </pre>
+    </div>
+    
+    <div class="footer">
+        Guo Moruo Square © 2023 | A Place of Reflection, Learning, and Community
+    </div>
+
+    <script>
+        // === JavaScript 部分：负责网站的交互和动态功能 ===
+        
+        // Text content for each page
+        const pages = [
+            "I remember Guo Moruo Square as one of the few sanctuaries during my demanding study years. At any hour, you could find students scattered across the grass, textbooks open but eyes gazing upward, finding solace in the open sky above. The square transformed with the seasons—spring brought cherry blossoms that dusted the pathways like pink snow, while autumn painted the trees in fiery hues that glowed against the grey academic buildings.",
+            
+            "What made this space extraordinary was the harmony of sounds: the delighted laughter of neighborhood children chasing kites mingled with earnest philosophical debates beneath the ancient oak. On weekends, the melodic strains of music students practicing their instruments blended with cheerful shouts from impromptu frisbee games. This diversity created a vibrant tapestry of campus life.",
+            
+            "The square served as a living metaphor for the university—where youthful energy met academic rigor, and community blended with scholarship. In the golden hour before sunset, when light slanted through the trees, everything paused in perfect balance. These moments of shared tranquility amidst hectic lives created bonds that lasted far beyond graduation."
+        ];
+        
+        let currentPage = 0;
+        let typingInterval;
+        const textElement = document.getElementById('typewriter-text');
+        const dots = document.querySelectorAll('.page-dot');
+        
+        // Function to type out text with typing effect
+        function typeText(text, element) {
+            clearInterval(typingInterval);
+            
+            let charIndex = 0;
+            element.innerHTML = '';
+            
+            typingInterval = setInterval(() => {
+                if (charIndex < text.length) {
+                    element.innerHTML += text.charAt(charIndex);
+                    charIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                }
+            }, 20);
+        }
+        
+        // Function to update page
+        function updatePage(pageIndex) {
+            currentPage = pageIndex;
+            
+            // Update active dot
+            dots.forEach((dot, index) => {
+                if (index === currentPage) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Type out the text for the current page
+            typeText(pages[currentPage], textElement);
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = (currentPage === 0);
+            document.getElementById('nextBtn').disabled = (currentPage === pages.length - 1);
+        }
+        
+        // Event listeners for pagination
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                updatePage(currentPage - 1);
+            }
+        });
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentPage < pages.length - 1) {
+                updatePage(currentPage + 1);
+            }
+        });
+        
+        // Event listeners for dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                updatePage(index);
+            });
+        });
+        
+        // Initialize with first page
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePage(0);
+            
+            // Add interactive effects to icons
+            document.querySelectorAll('.icon').forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.15) rotate(5deg)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotate(0)';
+                });
+            });
+            
+            // Add parallax effect to header
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                document.querySelector('.header').style.backgroundPositionY = `calc(50% + ${scrollPosition * 0.4}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
