@@ -4,23 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The School of Gifted Young</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 基础样式设置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Cambria', Georgia, serif;
         }
         
         body {
-            font-family: 'Cambria', Georgia, serif;
             background-color: #0a0a1a;
             color: #e0e0e0;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            background-image: linear-gradient(to bottom, #0a0a1a, #121230);
+        }
+        
+        /* 背景图片设置 */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            opacity: 0.4; /* 降低背景图片不透明度 */
+            background-image: url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'); /* 默认背景，替换为您上传的图片URL */
+        }
+        
+        /* 暗色遮罩 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.9) 0%, rgba(30, 15, 45, 0.85) 100%);
+            z-index: -1;
         }
         
         /* 星空背景效果 */
@@ -52,22 +76,36 @@
             padding: 30px 0;
             position: relative;
             z-index: 10;
+            margin-top: 20px;
         }
         
         .title {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             color: #d4af37;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #b0b0b0;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto 0;
             line-height: 1.6;
         }
         
@@ -83,8 +121,8 @@
         }
         
         .icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -95,13 +133,71 @@
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
             border: 1px solid rgba(212, 175, 55, 0.4);
             color: #d4af37;
-            font-size: 24px;
         }
         
         .icon:hover {
             transform: scale(1.2);
             background: rgba(212, 175, 55, 0.2);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        /* 返回图标设计 */
+        #backBtn {
+            position: relative;
+        }
+        
+        #backBtn::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-top: 3px solid #d4af37;
+            border-left: 3px solid #d4af37;
+            transform: rotate(-45deg);
+            transition: all 0.3s ease;
+        }
+        
+        #backBtn:hover::before {
+            width: 25px;
+            height: 25px;
+        }
+        
+        /* 搜索图标设计 */
+        #searchBtn {
+            position: relative;
+        }
+        
+        #searchBtn::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        #searchBtn::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 3px;
+            background: #d4af37;
+            transform: rotate(45deg);
+            top: 26px;
+            left: 23px;
+            transition: all 0.3s ease;
+        }
+        
+        #searchBtn:hover::before {
+            width: 25px;
+            height: 25px;
+        }
+        
+        #searchBtn:hover::after {
+            width: 12px;
+            top: 29px;
+            left: 26px;
         }
         
         /* 左侧悬停区域 */
@@ -113,6 +209,7 @@
             height: 50%; /* 3/4 - 1/4 = 50% */
             z-index: 20;
             border-radius: 10px;
+            cursor: help;
         }
         
         /* 对话框样式 */
@@ -130,6 +227,12 @@
             display: none;
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
             backdrop-filter: blur(5px);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
         }
         
         .dialog p {
@@ -142,6 +245,7 @@
         
         .dialog strong {
             color: #d4af37;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
         }
         
         /* 搜索模态框样式 */
@@ -157,6 +261,12 @@
             justify-content: center;
             z-index: 300;
             display: none;
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content {
@@ -167,16 +277,25 @@
             width: 400px;
             text-align: center;
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-content:hover {
+            transform: scale(1.02);
         }
         
         .modal h2 {
             color: #d4af37;
             margin-bottom: 25px;
             font-size: 1.8rem;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
         }
         
         .input-group {
             margin: 25px 0;
+            position: relative;
         }
         
         input {
@@ -190,11 +309,13 @@
             text-align: center;
             letter-spacing: 2px;
             font-family: 'Cambria', serif;
+            transition: all 0.3s ease;
         }
         
         input:focus {
             outline: none;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            border-color: #e6c050;
         }
         
         button {
@@ -209,11 +330,29 @@
             font-weight: bold;
             transition: all 0.3s ease;
             margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
         }
         
         button:hover {
             background: #e6c050;
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+        
+        button:hover::before {
+            left: 100%;
         }
         
         .result {
@@ -227,12 +366,14 @@
             align-items: center;
             justify-content: center;
             color: #d4af37;
+            border: 1px dashed rgba(212, 175, 55, 0.4);
+            animation: fadeIn 0.5s ease;
         }
         
         /* 内容区域 */
         .content {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 80px auto 50px;
             padding: 30px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -242,27 +383,60 @@
         .card {
             background: rgba(30, 30, 60, 0.7);
             border-radius: 15px;
-            padding: 25px;
+            padding: 30px;
             border: 1px solid rgba(212, 175, 55, 0.3);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #d4af37, #8a6d3b, #d4af37);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
         }
         
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             border-color: rgba(212, 175, 55, 0.7);
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
         }
         
         .card h3 {
             color: #d4af37;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 20px;
             text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #d4af37;
         }
         
         .card p {
-            line-height: 1.7;
-            font-size: 1.1rem;
+            line-height: 1.8;
+            font-size: 1.15rem;
+            text-align: center;
         }
         
         /* 页脚 */
@@ -273,10 +447,130 @@
             color: #888;
             font-size: 1rem;
             border-top: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #d4af37;
+        }
+        
+        /* 学院标志 */
+        .emblem {
+            width: 120px;
+            height: 120px;
+            margin: 30px auto;
+            position: relative;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20, 20, 40, 0.8);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        .emblem-inner {
+            width: 90px;
+            height: 90px;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .emblem-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-align: center;
+            line-height: 1;
+        }
+        
+        .emblem-text span {
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .dialog {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            .modal-content {
+                width: 90%;
+                padding: 25px;
+            }
+            
+            .icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .hover-area {
+                left: 10%;
+                width: 30%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            #backBtn::before {
+                width: 15px;
+                height: 15px;
+            }
+            
+            #searchBtn::before {
+                width: 15px;
+                height: 15px;
+            }
+            
+            #searchBtn::after {
+                width: 8px;
+                top: 22px;
+                left: 19px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 背景图片 -->
+    <div class="background-image"></div>
+    
+    <!-- 暗色遮罩 -->
+    <div class="overlay"></div>
+    
     <!-- 星空背景 -->
     <div class="stars" id="stars"></div>
     
@@ -284,16 +578,19 @@
     <div class="header">
         <h1 class="title">This is The School of Gifted Young</h1>
         <p class="subtitle">A sanctuary for exceptional minds, where intellectual curiosity meets unparalleled talent. Our scholars redefine the boundaries of knowledge and innovation.</p>
+        
+        <!-- 学院标志 -->
+        <div class="emblem">
+            <div class="emblem-inner">
+                <div class="emblem-text">SGY<br><span>Since 1978</span></div>
+            </div>
+        </div>
     </div>
     
     <!-- 图标区域 -->
     <div class="icons">
-        <div class="icon" id="backBtn">
-            <i class="fas fa-arrow-left"></i>
-        </div>
-        <div class="icon" id="searchBtn">
-            <i class="fas fa-search"></i>
-        </div>
+        <div class="icon" id="backBtn" title="Back to Home"></div>
+        <div class="icon" id="searchBtn" title="Search Scholar Database"></div>
     </div>
     
     <!-- 左侧悬停区域 -->
@@ -391,6 +688,10 @@
             searchModal.style.display = 'flex';
             result.textContent = '';
             accountInput.value = '';
+            // 自动聚焦到输入框
+            setTimeout(() => {
+                accountInput.focus();
+            }, 100);
         });
         
         backBtn.addEventListener('click', () => {
@@ -412,6 +713,13 @@
             }
         });
         
+        // 按Enter键也可以触发验证
+        accountInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyBtn.click();
+            }
+        });
+        
         // 点击模态框外部关闭
         searchModal.addEventListener('click', (e) => {
             if (e.target === searchModal) {
@@ -422,6 +730,13 @@
         // 初始化
         window.addEventListener('DOMContentLoaded', () => {
             createStars();
+            
+            // 设置背景图片（在GitHub部署时替换URL）
+            // 在GitHub上部署时，将以下注释取消，并将URL替换为您的图片路径
+            /*
+            const backgroundImage = document.querySelector('.background-image');
+            backgroundImage.style.backgroundImage = "url('your-image-filename.jpg')";
+            */
         });
     </script>
 </body>
