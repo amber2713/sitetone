@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The School of Gifted Young</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cambria', Georgia, serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background-image: linear-gradient(to bottom, #0a0a1a, #121230);
+        }
+        
+        /* 星空背景效果 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        /* 标题样式 */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .title {
+            font-size: 3.2rem;
+            color: #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* 图标样式 */
+        .icons {
+            position: fixed;
+            top: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            z-index: 100;
+        }
+        
+        .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(30, 30, 60, 0.8);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #d4af37;
+            font-size: 24px;
+        }
+        
+        .icon:hover {
+            transform: scale(1.2);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        /* 左侧悬停区域 */
+        .hover-area {
+            position: absolute;
+            left: 12.5%; /* 1/8 */
+            top: 25%;   /* 1/4 */
+            width: 25%;  /* 3/8 - 1/8 = 25% */
+            height: 50%; /* 3/4 - 1/4 = 50% */
+            z-index: 20;
+            border-radius: 10px;
+        }
+        
+        /* 对话框样式 */
+        .dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background: rgba(20, 20, 40, 0.95);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 30px;
+            z-index: 200;
+            display: none;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .dialog p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .dialog strong {
+            color: #d4af37;
+        }
+        
+        /* 搜索模态框样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            display: none;
+        }
+        
+        .modal-content {
+            background: #1a1a3a;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+        
+        .modal h2 {
+            color: #d4af37;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .input-group {
+            margin: 25px 0;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            background: #0a0a1a;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            color: #f0f0f0;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 2px;
+            font-family: 'Cambria', serif;
+        }
+        
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        button {
+            background: #d4af37;
+            color: #0a0a1a;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Cambria', serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        button:hover {
+            background: #e6c050;
+            transform: scale(1.05);
+        }
+        
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 8px;
+            font-size: 1.2rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+        }
+        
+        /* 内容区域 */
+        .content {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-color: rgba(212, 175, 55, 0.7);
+        }
+        
+        .card h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .card p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: #888;
+            font-size: 1rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- 标题区域 -->
+    <div class="header">
+        <h1 class="title">This is The School of Gifted Young</h1>
+        <p class="subtitle">A sanctuary for exceptional minds, where intellectual curiosity meets unparalleled talent. Our scholars redefine the boundaries of knowledge and innovation.</p>
+    </div>
+    
+    <!-- 图标区域 -->
+    <div class="icons">
+        <div class="icon" id="backBtn">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="icon" id="searchBtn">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+    
+    <!-- 左侧悬停区域 -->
+    <div class="hover-area" id="hoverArea"></div>
+    
+    <!-- 对话框 -->
+    <div class="dialog" id="dialog">
+        <p>It seems the students here are quite impressive. I always hear tales of their busy schedules, but there are also many amusing stories. Why is "<strong>SHAO PI</strong>" my first reaction upon entering!</p>
+    </div>
+    
+    <!-- 搜索模态框 -->
+    <div class="modal" id="searchModal">
+        <div class="modal-content">
+            <h2>Scholar Verification</h2>
+            <div class="input-group">
+                <input type="number" id="accountInput" placeholder="Enter 5-digit ID" maxlength="5">
+            </div>
+            <button id="verifyBtn">Verify</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+        <div class="card">
+            <h3>Academic Excellence</h3>
+            <p>Our rigorous curriculum challenges the brightest young minds. With specialized tracks in mathematics, physics, and computer science, we provide an environment where intellectual curiosity thrives.</p>
+        </div>
+        <div class="card">
+            <h3>Innovation Hub</h3>
+            <p>State-of-the-art laboratories and research facilities enable our students to work on cutting-edge projects. Many alumni have made significant contributions to scientific advancement.</p>
+        </div>
+        <div class="card">
+            <h3>Global Community</h3>
+            <p>We foster a diverse international community of scholars. Our students participate in worldwide competitions, conferences, and exchange programs with leading institutions.</p>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <div class="footer">
+        <p>The School of Gifted Young © 2025 | Where Extraordinary Minds Shape the Future</p>
+    </div>
+
+    <script>
+        // 创建星空背景
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starsCount = 200;
+            
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机位置
+                const x = Math.floor(Math.random() * 100);
+                const y = Math.floor(Math.random() * 100);
+                
+                // 随机大小 (1-3px)
+                const size = Math.random() * 2 + 1;
+                
+                // 随机动画时长 (3-8秒)
+                const duration = Math.random() * 5 + 3;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${duration}s`);
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // 显示/隐藏对话框
+        const hoverArea = document.getElementById('hoverArea');
+        const dialog = document.getElementById('dialog');
+        
+        hoverArea.addEventListener('mouseenter', () => {
+            dialog.style.display = 'block';
+        });
+        
+        hoverArea.addEventListener('mouseleave', () => {
+            dialog.style.display = 'none';
+        });
+        
+        // 搜索功能
+        const searchBtn = document.getElementById('searchBtn');
+        const searchModal = document.getElementById('searchModal');
+        const backBtn = document.getElementById('backBtn');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const accountInput = document.getElementById('accountInput');
+        const result = document.getElementById('result');
+        
+        searchBtn.addEventListener('click', () => {
+            searchModal.style.display = 'flex';
+            result.textContent = '';
+            accountInput.value = '';
+        });
+        
+        backBtn.addEventListener('click', () => {
+            window.location.href = 'https://amber2713.github.io/siteone/squre';
+        });
+        
+        verifyBtn.addEventListener('click', () => {
+            const account = accountInput.value;
+            
+            if (account.length !== 5) {
+                result.textContent = 'Please enter a 5-digit ID';
+                return;
+            }
+            
+            if (account === '10358') {
+                result.innerHTML = 'Esteemed Scholar, this is the School for the Gifted Young. Many brilliant talents have emerged here, shining like stars. However, we regret to inform you that the materials have been relocated.';
+            } else {
+                result.textContent = 'You do not have any permissions.';
+            }
+        });
+        
+        // 点击模态框外部关闭
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) {
+                searchModal.style.display = 'none';
+            }
+        });
+        
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            createStars();
+        });
+    </script>
+</body>
+</html>
