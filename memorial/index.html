@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portrait of Guo Moruo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cambria:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cambria', serif;
+            background: linear-gradient(rgba(10, 15, 30, 0.9), rgba(5, 10, 20, 0.95)), 
+                        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogIDxkZWZzPgogICAgPHBhdHRlcm4gaWQ9InBhdHRlcm4iIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CiAgICAgIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwNjA4MTQiIC8+CiAgICAgIDxwYXRoIGQ9Ik0gMTAgMTAgTCAzMCAxMCBNIDEwIDIwIEwgMzAgMjAgTSAxMCAzMCBMIDMwIDMwIE0gMCAxMCBMIDAgMzAgTSA0MCAxMCBMIDQwIDMwIiBzdHJva2U9IiMyYjM4NTAiIHN0cm9rZS13aWR0aD0iMSIgLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIgLz4KPC9zdmc+');
+            color: #f0f0f0;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Floating dots background */
+        .floating-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .dot {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0.2;
+            }
+        }
+        
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e8dab3;
+            text-shadow: 0 0 10px rgba(232, 218, 179, 0.5);
+            margin-bottom: 2rem;
+        }
+        
+        /* Bullet screen container */
+        .bullet-screen {
+            position: absolute;
+            top: 25%;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            overflow: hidden;
+            background: rgba(15, 25, 40, 0.7);
+            border-top: 1px solid rgba(232, 218, 179, 0.3);
+            border-bottom: 1px solid rgba(232, 218, 179, 0.3);
+            z-index: 10;
+        }
+        
+        .bullet {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 1.2rem;
+            color: #e8dab3;
+            text-shadow: 0 0 5px rgba(232, 218, 179, 0.7);
+            animation: bulletMove linear infinite;
+        }
+        
+        @keyframes bulletMove {
+            0% {
+                transform: translateX(100vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* Interactive area */
+        .interactive-area {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .monologue {
+            background: rgba(15, 25, 40, 0.85);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(232, 218, 179, 0.4);
+            max-width: 600px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            line-height: 1.8;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .interactive-area:hover .monologue {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Icons */
+        .flower-icon {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            z-index: 20;
+            transition: transform 0.3s ease;
+        }
+        
+        .flower-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .back-icon {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 20;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Flower counter */
+        .flower-counter {
+            position: fixed;
+            bottom: 100px;
+            left: 50px;
+            color: #e8dab3;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 20;
+        }
+        
+        .counter-show {
+            opacity: 1;
+        }
+        
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(200, 200, 200, 0.7);
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating dots background -->
+    <div class="floating-dots" id="floatingDots"></div>
+    
+    <!-- Header with title -->
+    <div class="header">
+        <h1>Portrait of Guo Moruo</h1>
+    </div>
+    
+    <!-- Bullet screen -->
+    <div class="bullet-screen" id="bulletScreen"></div>
+    
+    <!-- Interactive area with monologue -->
+    <div class="interactive-area">
+        <div class="monologue">
+            Mr. Guo Moruo was indeed a remarkable figure in Chinese history—a visionary scholar, revolutionary poet, and pioneering educator. As the founding president of the University of Science and Technology of China, he established a legacy of academic excellence and innovation. USTC stands today as a cradle of scientific discovery, nurturing brilliant minds who continue to push the boundaries of knowledge. His profound contributions to literature, history, and science remain an enduring inspiration, illuminating the path for future generations of scholars and thinkers...
+        </div>
+    </div>
+    
+    <!-- Flower icon -->
+    <div class="flower-icon" id="flowerIcon">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="8" fill="#e8dab3" />
+            <path d="M50,30 Q60,35 65,25 Q55,30 50,20 Q45,30 35,25 Q40,35 50,30" fill="#e74c3c" />
+            <path d="M50,70 Q60,65 65,75 Q55,70 50,80 Q45,70 35,75 Q40,65 50,70" fill="#e74c3c" />
+            <path d="M30,50 Q35,60 25,65 Q30,55 20,50 Q30,45 25,35 Q35,40 30,50" fill="#e74c3c" />
+            <path d="M70,50 Q65,40 75,35 Q70,45 80,50 Q70,55 75,65 Q65,60 70,50" fill="#e74c3c" />
+            <path d="M40,35 Q45,40 35,45 Q40,35 45,30 Q50,35 55,30 Q60,35 65,45 Q55,40 50,35 Q45,40 40,35" fill="#f39c12" />
+            <rect x="48" y="60" width="4" height="25" fill="#2ecc71" />
+            <path d="M40,85 Q50,80 60,85 Q55,90 50,95 Q45,90 40,85" fill="#2ecc71" />
+        </svg>
+    </div>
+    
+    <!-- Flower counter -->
+    <div class="flower-counter" id="flowerCounter">
+        +1 Flower Offered
+    </div>
+    
+    <!-- Back icon -->
+    <a href="https://amber2713.github.io/siteone/squre" class="back-icon">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="rgba(15,25,40,0.7)" stroke="#e8dab3" stroke-width="2" />
+            <polygon points="60,30 40,50 60,70" fill="#e8dab3" />
+        </svg>
+    </a>
+    
+    <!-- Footer -->
+    <div class="footer">
+        In Memory of Guo Moruo (1892-1978) | Founder and First President of USTC
+    </div>
+
+    <script>
+        // Create floating dots
+        const floatingDots = document.getElementById('floatingDots');
+        for (let i = 0; i < 100; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            
+            const size = Math.random() * 5 + 1;
+            dot.style.width = `${size}px`;
+            dot.style.height = `${size}px`;
+            
+            dot.style.left = `${Math.random() * 100}vw`;
+            dot.style.top = `${Math.random() * 100}vh`;
+            
+            dot.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            dot.style.animationDelay = `${Math.random() * 5}s`;
+            
+            floatingDots.appendChild(dot);
+        }
+        
+        // Bullet messages
+        const messages = [
+            "Respect to our beloved President Guo Moruo!",
+            "Your legacy inspires us every day.",
+            "USTC is proud of you!",
+            "Thank you for founding our great university.",
+            "We will carry forward your spirit.",
+            "Great pioneer of science and culture.",
+            "Your contributions are immortal.",
+            "We miss you, President Guo.",
+            "A true legend of USTC.",
+            "Guo Moruo, forever in our hearts."
+        ];
+        
+        const bulletScreen = document.getElementById('bulletScreen');
+        
+        function createBullet(text) {
+            const bullet = document.createElement('div');
+            bullet.classList.add('bullet');
+            bullet.textContent = text;
+            
+            const topPosition = Math.random() * 40 + 10;
+            bullet.style.top = `${topPosition}%`;
+            
+            const duration = Math.random() * 20 + 15;
+            bullet.style.animationDuration = `${duration}s`;
+            
+            bulletScreen.appendChild(bullet);
+            
+            // Remove bullet after animation
+            setTimeout(() => {
+                bullet.remove();
+            }, duration * 1000);
+        }
+        
+        // Start bullet messages
+        function startBullets() {
+            messages.forEach((msg, index) => {
+                setTimeout(() => {
+                    createBullet(msg);
+                }, index * 2500);
+            });
+            
+            // Repeat every 25 seconds
+            setTimeout(startBullets, 25000);
+        }
+        
+        startBullets();
+        
+        // Flower offering functionality
+        const flowerIcon = document.getElementById('flowerIcon');
+        const flowerCounter = document.getElementById('flowerCounter');
+        let flowerCount = 0;
+        
+        flowerIcon.addEventListener('click', () => {
+            flowerCount++;
+            flowerCounter.textContent = `+${flowerCount} Flower${flowerCount > 1 ? 's' : ''} Offered`;
+            flowerCounter.classList.add('counter-show');
+            
+            // Create floating flower effect
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createFloatingFlower();
+                }, i * 200);
+            }
+            
+            // Hide counter after 3 seconds
+            setTimeout(() => {
+                flowerCounter.classList.remove('counter-show');
+            }, 3000);
+        });
+        
+        function createFloatingFlower() {
+            const flower = document.createElement('div');
+            flower.style.position = 'fixed';
+            flower.style.bottom = '100px';
+            flower.style.left = '80px';
+            flower.style.width = '20px';
+            flower.style.height = '20px';
+            flower.style.zIndex = '19';
+            flower.innerHTML = `
+                <svg viewBox="0 0 20 20">
+                    <circle cx="10" cy="10" r="2" fill="#e8dab3" />
+                    <path d="M10,5 Q11,6 12,5 Q11,7 10,6 Q9,7 8,5 Q9,6 10,5" fill="#e74c3c" />
+                </svg>
+            `;
+            document.body.appendChild(flower);
+            
+            // Animation
+            const startLeft = 80;
+            const endLeft = startLeft + Math.random() * 100 - 50;
+            
+            const animation = flower.animate([
+                { transform: 'translateY(0)', opacity: 1 },
+                { transform: `translateY(-100px) translateX(${endLeft - startLeft}px)`, opacity: 0.5 },
+                { transform: `translateY(-200px) translateX(${(endLeft - startLeft) * 2}px)`, opacity: 0 }
+            ], {
+                duration: 2000,
+                easing: 'ease-out'
+            });
+            
+            animation.onfinish = () => {
+                flower.remove();
+            };
+        }
+    </script>
+</body>
+</html>
