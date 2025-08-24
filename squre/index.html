@@ -6,46 +6,36 @@
     <title>Welcome to Guo Moruo Square</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === CSS 部分：负责网站的外观和布局 === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cambria', serif;
         }
-            
+        
         body {
-            background: linear-gradient(135deg, #0c1220 0%, #1a1a2e 50%, #16213e 100%);
             color: #e6e6e6;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            /* 全屏背景图片 */
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            /* 背景亮度调整到40 */
+            filter: brightness(40%);
         }
         
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 15% 25%, rgba(80, 100, 200, 0.1) 0%, transparent 25%),
-                radial-gradient(circle at 85% 75%, rgba(150, 100, 200, 0.1) 0%, transparent 25%);
-            z-index: -1;
+        /* 恢复内容区域的亮度 */
+        .container, .header, .instructions, .file-structure, .footer {
+            filter: brightness(100%);
         }
         
         .header {
             height: 400px;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), 
-                         url('images/background.jpg');
-            background-size: cover;
-            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
             overflow: hidden;
         }
         
@@ -56,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 100px;
-            background: linear-gradient(to top, #0c1220, transparent);
+            background: linear-gradient(to top, rgba(12, 18, 32, 0.9), transparent);
             z-index: 1;
         }
         
@@ -185,7 +175,8 @@
         }
         
         .dialogue-box {
-            background: linear-gradient(145deg, #1e1e2e, #2a2a3a);
+            /* 更暗淡的文本框色调 */
+            background: linear-gradient(145deg, rgba(30, 30, 46, 0.9), rgba(42, 42, 58, 0.9));
             border-radius: 20px;
             padding: 45px 45px 70px;
             margin: 30px 0;
@@ -197,6 +188,7 @@
             min-height: 500px;
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(5px);
         }
         
         .dialogue-box::before {
@@ -315,6 +307,7 @@
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
+            border-radius: 30px;
         }
         
         .page-btn:hover::before {
@@ -342,59 +335,6 @@
             transform: scale(1.3);
         }
         
-        .file-structure {
-            background: rgba(20, 20, 40, 0.8);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 30px auto;
-            max-width: 800px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .file-structure h3 {
-            color: #e8cda5;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .file-structure pre {
-            background: rgba(10, 10, 20, 0.6);
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-            color: #c0c0c0;
-            line-height: 1.5;
-        }
-        
-        .instructions {
-            background: rgba(20, 20, 40, 0.8);
-            border-radius: 10px;
-            padding: 25px;
-            margin: 30px auto;
-            max-width: 800px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .instructions h3 {
-            color: #e8cda5;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .instructions ol {
-            padding-left: 30px;
-        }
-        
-        .instructions li {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .instructions strong {
-            color: #e8cda5;
-        }
-        
         .footer {
             text-align: center;
             padding: 40px;
@@ -417,6 +357,10 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 40px;
+            }
+            
+            .left-icons, .right-icons {
+                align-items: center;
             }
             
             .header h1 {
@@ -544,55 +488,11 @@
         </div>
     </div>
     
-    <div class="instructions">
-        <h3>CSS 和 JavaScript 文件的作用</h3>
-        <div class="explanation-container">
-            <div class="css-explanation">
-                <h4><i class="fas fa-paint-brush"></i> CSS 文件的作用</h4>
-                <ul>
-                    <li>控制网页的视觉样式和布局</li>
-                    <li>定义颜色、字体、间距等外观属性</li>
-                    <li>创建响应式设计以适应不同屏幕尺寸</li>
-                    <li>实现动画和过渡效果</li>
-                    <li>确保整个网站的风格一致性</li>
-                </ul>
-            </div>
-            
-            <div class="js-explanation">
-                <h4><i class="fas fa-code"></i> JavaScript 文件的作用</h4>
-                <ul>
-                    <li>实现网页的交互功能和动态行为</li>
-                    <li>处理用户事件（点击、悬停等）</li>
-                    <li>动态更新内容（如打字机效果）</li>
-                    <li>操作DOM元素（添加、删除、修改）</li>
-                    <li>执行计算和数据处理</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="file-structure">
-        <h3>推荐的文件结构</h3>
-        <pre>
-项目文件夹/
-├── index.html             # 主HTML文件
-├── images/                # 图片文件夹
-│   ├── background.jpg     # 您的背景图片
-│   └── ...                # 其他图片资源
-├── css/                   # CSS文件夹
-│   └── styles.css         # 样式文件
-└── js/                    # JavaScript文件夹
-    └── scripts.js         # 脚本文件
-        </pre>
-    </div>
-    
     <div class="footer">
         Guo Moruo Square © 2023 | A Place of Reflection, Learning, and Community
     </div>
 
     <script>
-        // === JavaScript 部分：负责网站的交互和动态功能 ===
-        
         // Text content for each page
         const pages = [
             "I remember Guo Moruo Square as one of the few sanctuaries during my demanding study years. At any hour, you could find students scattered across the grass, textbooks open but eyes gazing upward, finding solace in the open sky above. The square transformed with the seasons—spring brought cherry blossoms that dusted the pathways like pink snow, while autumn painted the trees in fiery hues that glowed against the grey academic buildings.",
