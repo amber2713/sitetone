@@ -14,8 +14,8 @@
         }
         
         body {
-            background-color: #0a0a1a;
-            color: #e0e0e0;
+            background-color: #f0f2f5;
+            color: #333;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -32,22 +32,23 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: -2;
-            opacity: 0.4; /* 降低背景图片不透明度 */
-            background-image: url('images/school of gifted.png'); /* 默认背景，替换为您上传的图片URL */
+            opacity: 0.3;
+            background-image: url('images/school of gifted.png');
+            filter: brightness(1.1);
         }
         
-        /* 暗色遮罩 */
+        /* 明亮遮罩 */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(10, 10, 26, 0.9) 0%, rgba(30, 15, 45, 0.85) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(240, 242, 245, 0.8) 100%);
             z-index: -1;
         }
         
-        /* 星空背景效果 */
+        /* 星空背景效果 - 调整为更明亮的版本 */
         .stars {
             position: fixed;
             top: 0;
@@ -60,14 +61,14 @@
         
         .star {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(100, 150, 255, 0.6);
             border-radius: 50%;
             animation: twinkle var(--duration) infinite ease-in-out;
         }
         
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
         }
         
         /* 标题样式 */
@@ -81,8 +82,8 @@
         
         .title {
             font-size: 3.5rem;
-            color: #d4af37;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            color: #2c3e50;
+            text-shadow: 0 0 10px rgba(44, 62, 80, 0.2);
             letter-spacing: 2px;
             margin-bottom: 15px;
             font-weight: 600;
@@ -98,12 +99,12 @@
             transform: translateX(-50%);
             width: 200px;
             height: 3px;
-            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
         }
         
         .subtitle {
             font-size: 1.3rem;
-            color: #b0b0b0;
+            color: #5d6d7e;
             max-width: 800px;
             margin: 20px auto 0;
             line-height: 1.6;
@@ -129,16 +130,16 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: rgba(30, 30, 60, 0.8);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: #d4af37;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            color: #3498db;
         }
         
         .icon:hover {
             transform: scale(1.2);
-            background: rgba(212, 175, 55, 0.2);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            background: rgba(52, 152, 219, 0.1);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
         }
         
         /* 返回图标设计 */
@@ -151,8 +152,8 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            border-top: 3px solid #d4af37;
-            border-left: 3px solid #d4af37;
+            border-top: 3px solid #3498db;
+            border-left: 3px solid #3498db;
             transform: rotate(-45deg);
             transition: all 0.3s ease;
         }
@@ -172,7 +173,7 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            border: 3px solid #d4af37;
+            border: 3px solid #3498db;
             border-radius: 50%;
             transition: all 0.3s ease;
         }
@@ -182,7 +183,7 @@
             position: absolute;
             width: 10px;
             height: 3px;
-            background: #d4af37;
+            background: #3498db;
             transform: rotate(45deg);
             top: 26px;
             left: 23px;
@@ -219,13 +220,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 500px;
-            background: rgba(20, 20, 40, 0.95);
-            border: 2px solid #d4af37;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #3498db;
             border-radius: 15px;
             padding: 30px;
             z-index: 200;
             display: none;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(5px);
             animation: fadeIn 0.5s ease;
         }
@@ -238,14 +239,171 @@
         .dialog p {
             font-size: 1.4rem;
             line-height: 1.6;
-            color: #f0f0f0;
+            color: #2c3e50;
             text-align: center;
             font-style: italic;
         }
         
         .dialog strong {
-            color: #d4af37;
-            text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+            color: #3498db;
+            text-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* 内容图标区域 */
+        .content-icons {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 80px auto 50px;
+            max-width: 1200px;
+            padding: 0 30px;
+        }
+        
+        .content-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(52, 152, 219, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .content-icon:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.2);
+            border-color: rgba(52, 152, 219, 0.5);
+        }
+        
+        .content-icon:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .content-icon i {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .content-icon:hover i {
+            transform: scale(1.2);
+            color: #2980b9;
+        }
+        
+        .content-icon span {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* 内容模态框 */
+        .content-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 400;
+            display: none;
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        .content-modal.active {
+            display: flex;
+        }
+        
+        .modal-container {
+            width: 700px;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.98);
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.4s ease;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .close-btn::before, .close-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: #e74c3c;
+            top: 50%;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn::before {
+            transform: rotate(45deg);
+        }
+        
+        .close-btn::after {
+            transform: rotate(-45deg);
+        }
+        
+        .close-btn:hover::before, .close-btn:hover::after {
+            background: #c0392b;
+            transform: rotate(0deg);
+        }
+        
+        .modal-title {
+            color: #3498db;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+        }
+        
+        .modal-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #2c3e50;
+            text-align: center;
         }
         
         /* 搜索模态框样式 */
@@ -255,7 +413,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -270,13 +428,13 @@
         }
         
         .modal-content {
-            background: #1a1a3a;
+            background: #fff;
             padding: 40px;
             border-radius: 15px;
-            border: 2px solid #d4af37;
+            border: 2px solid #3498db;
             width: 400px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             position: relative;
             transform: scale(1);
             transition: transform 0.3s ease;
@@ -287,10 +445,9 @@
         }
         
         .modal h2 {
-            color: #d4af37;
+            color: #3498db;
             margin-bottom: 25px;
             font-size: 1.8rem;
-            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
         }
         
         .input-group {
@@ -301,10 +458,10 @@
         input {
             width: 100%;
             padding: 15px;
-            background: #0a0a1a;
-            border: 1px solid #d4af37;
+            background: #f8f9fa;
+            border: 1px solid #3498db;
             border-radius: 8px;
-            color: #f0f0f0;
+            color: #2c3e50;
             font-size: 1.2rem;
             text-align: center;
             letter-spacing: 2px;
@@ -314,13 +471,13 @@
         
         input:focus {
             outline: none;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
-            border-color: #e6c050;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+            border-color: #2980b9;
         }
         
         button {
-            background: #d4af37;
-            color: #0a0a1a;
+            background: #3498db;
+            color: white;
             border: none;
             padding: 12px 30px;
             border-radius: 8px;
@@ -346,9 +503,9 @@
         }
         
         button:hover {
-            background: #e6c050;
+            background: #2980b9;
             transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
         
         button:hover::before {
@@ -358,85 +515,16 @@
         .result {
             margin-top: 25px;
             padding: 15px;
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(52, 152, 219, 0.1);
             border-radius: 8px;
             font-size: 1.2rem;
             min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #d4af37;
-            border: 1px dashed rgba(212, 175, 55, 0.4);
+            color: #3498db;
+            border: 1px dashed rgba(52, 152, 219, 0.3);
             animation: fadeIn 0.5s ease;
-        }
-        
-        /* 内容区域 */
-        .content {
-            max-width: 1200px;
-            margin: 80px auto 50px;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .card {
-            background: rgba(30, 30, 60, 0.7);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #d4af37, #8a6d3b, #d4af37);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-            border-color: rgba(212, 175, 55, 0.7);
-        }
-        
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .card h3 {
-            color: #d4af37;
-            font-size: 1.7rem;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .card h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: #d4af37;
-        }
-        
-        .card p {
-            line-height: 1.8;
-            font-size: 1.15rem;
-            text-align: center;
         }
         
         /* 页脚 */
@@ -444,9 +532,9 @@
             text-align: center;
             padding: 30px;
             margin-top: 50px;
-            color: #888;
+            color: #7f8c8d;
             font-size: 1rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-top: 1px solid rgba(52, 152, 219, 0.2);
             position: relative;
         }
         
@@ -458,49 +546,29 @@
             transform: translateX(-50%);
             width: 100px;
             height: 2px;
-            background: #d4af37;
-        }
-        
-        /* 学院标志 */
-        .emblem {
-            width: 120px;
-            height: 120px;
-            margin: 30px auto;
-            position: relative;
-            border: 3px solid #d4af37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(20, 20, 40, 0.8);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-        
-        .emblem-inner {
-            width: 90px;
-            height: 90px;
-            border: 2px solid #d4af37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .emblem-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #d4af37;
-            text-align: center;
-            line-height: 1;
-        }
-        
-        .emblem-text span {
-            font-size: 0.9rem;
-            display: block;
-            margin-top: 5px;
+            background: #3498db;
         }
         
         /* 响应式设计 */
+        @media (max-width: 900px) {
+            .content-icons {
+                gap: 30px;
+            }
+            
+            .content-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .content-icon i {
+                font-size: 32px;
+            }
+            
+            .content-icon span {
+                font-size: 1rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .title {
                 font-size: 2.5rem;
@@ -516,9 +584,23 @@
                 padding: 20px;
             }
             
-            .modal-content {
-                width: 90%;
-                padding: 25px;
+            .modal-container {
+                padding: 30px 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            
+            .content-icons {
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+            }
+            
+            .content-icon {
+                width: 120px;
+                height: 120px;
             }
             
             .icon {
@@ -537,8 +619,13 @@
                 font-size: 2rem;
             }
             
-            .content {
-                grid-template-columns: 1fr;
+            .content-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .content-icon i {
+                font-size: 28px;
             }
             
             .icon {
@@ -563,12 +650,13 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- 背景图片 -->
     <div class="background-image"></div>
     
-    <!-- 暗色遮罩 -->
+    <!-- 明亮遮罩 -->
     <div class="overlay"></div>
     
     <!-- 星空背景 -->
@@ -578,13 +666,6 @@
     <div class="header">
         <h1 class="title">This is The School of Gifted Young</h1>
         <p class="subtitle">A sanctuary for exceptional minds, where intellectual curiosity meets unparalleled talent. Our scholars redefine the boundaries of knowledge and innovation.</p>
-        
-        <!-- 学院标志 -->
-        <div class="emblem">
-            <div class="emblem-inner">
-                <div class="emblem-text">SGY<br><span>Since 1978</span></div>
-            </div>
-        </div>
     </div>
     
     <!-- 图标区域 -->
@@ -601,6 +682,31 @@
         <p>It seems the students here are quite impressive. I always hear tales of their busy schedules, but there are also many amusing stories. Why is "<strong>SHAO PI</strong>" my first reaction upon entering!</p>
     </div>
     
+    <!-- 内容图标区域 -->
+    <div class="content-icons">
+        <div class="content-icon" id="academicIcon">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Academic Excellence</span>
+        </div>
+        <div class="content-icon" id="innovationIcon">
+            <i class="fas fa-flask"></i>
+            <span>Innovation Hub</span>
+        </div>
+        <div class="content-icon" id="globalIcon">
+            <i class="fas fa-globe"></i>
+            <span>Global Community</span>
+        </div>
+    </div>
+    
+    <!-- 内容模态框 -->
+    <div class="content-modal" id="contentModal">
+        <div class="modal-container">
+            <div class="close-btn" id="closeModal"></div>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-text" id="modalText"></p>
+        </div>
+    </div>
+    
     <!-- 搜索模态框 -->
     <div class="modal" id="searchModal">
         <div class="modal-content">
@@ -613,22 +719,6 @@
         </div>
     </div>
     
-    <!-- 内容区域 -->
-    <div class="content">
-        <div class="card">
-            <h3>Academic Excellence</h3>
-            <p>Our rigorous curriculum challenges the brightest young minds. With specialized tracks in mathematics, physics, and computer science, we provide an environment where intellectual curiosity thrives.</p>
-        </div>
-        <div class="card">
-            <h3>Innovation Hub</h3>
-            <p>State-of-the-art laboratories and research facilities enable our students to work on cutting-edge projects. Many alumni have made significant contributions to scientific advancement.</p>
-        </div>
-        <div class="card">
-            <h3>Global Community</h3>
-            <p>We foster a diverse international community of scholars. Our students participate in worldwide competitions, conferences, and exchange programs with leading institutions.</p>
-        </div>
-    </div>
-    
     <!-- 页脚 -->
     <div class="footer">
         <p>The School of Gifted Young © 2025 | Where Extraordinary Minds Shape the Future</p>
@@ -638,7 +728,7 @@
         // 创建星空背景
         function createStars() {
             const starsContainer = document.getElementById('stars');
-            const starsCount = 200;
+            const starsCount = 150;
             
             for (let i = 0; i < starsCount; i++) {
                 const star = document.createElement('div');
@@ -688,7 +778,6 @@
             searchModal.style.display = 'flex';
             result.textContent = '';
             accountInput.value = '';
-            // 自动聚焦到输入框
             setTimeout(() => {
                 accountInput.focus();
             }, 100);
@@ -727,16 +816,63 @@
             }
         });
         
+        // 内容模态框功能
+        const contentModal = document.getElementById('contentModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        
+        // 定义内容
+        const contentData = {
+            academic: {
+                title: "Academic Excellence",
+                text: "Our rigorous curriculum challenges the brightest young minds. With specialized tracks in mathematics, physics, and computer science, we provide an environment where intellectual curiosity thrives. Students engage in advanced research projects from their first year, working alongside distinguished faculty members who are leaders in their fields."
+            },
+            innovation: {
+                title: "Innovation Hub",
+                text: "State-of-the-art laboratories and research facilities enable our students to work on cutting-edge projects. Many alumni have made significant contributions to scientific advancement. Our innovation center provides resources for students to develop their ideas into real-world solutions, with mentorship from industry experts and entrepreneurs."
+            },
+            global: {
+                title: "Global Community",
+                text: "We foster a diverse international community of scholars. Our students participate in worldwide competitions, conferences, and exchange programs with leading institutions. This global perspective prepares them to address complex challenges and become leaders in an increasingly interconnected world."
+            }
+        };
+        
+        // 添加图标点击事件
+        document.getElementById('academicIcon').addEventListener('click', () => {
+            showContent('academic');
+        });
+        
+        document.getElementById('innovationIcon').addEventListener('click', () => {
+            showContent('innovation');
+        });
+        
+        document.getElementById('globalIcon').addEventListener('click', () => {
+            showContent('global');
+        });
+        
+        // 显示内容函数
+        function showContent(type) {
+            modalTitle.textContent = contentData[type].title;
+            modalText.textContent = contentData[type].text;
+            contentModal.classList.add('active');
+        }
+        
+        // 关闭模态框
+        closeModal.addEventListener('click', () => {
+            contentModal.classList.remove('active');
+        });
+        
+        // 点击模态框外部关闭
+        contentModal.addEventListener('click', (e) => {
+            if (e.target === contentModal) {
+                contentModal.classList.remove('active');
+            }
+        });
+        
         // 初始化
         window.addEventListener('DOMContentLoaded', () => {
             createStars();
-            
-            // 设置背景图片（在GitHub部署时替换URL）
-            // 在GitHub上部署时，将以下注释取消，并将URL替换为您的图片路径
-            /*
-            const backgroundImage = document.querySelector('.background-image');
-            backgroundImage.style.backgroundImage = "url('your-image-filename.jpg')";
-            */
         });
     </script>
 </body>
