@@ -19,7 +19,7 @@
         }
         
         body {
-            color: #e6e6e6;
+            color: #f0f0f0; /* 调亮默认文本颜色 */
             min-height: 100vh;
             position: relative;
             /* 全屏背景图片 */
@@ -48,19 +48,20 @@
         }
         
         .header h1 {
-            color: #f8f8f8;
-            font-size: 3.5vw;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            letter-spacing: 2px;
+            color: #ffffff; /* 改为纯白色 */
+            font-size: 3.8vw; /* 增大字体 */
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 2px 5px rgba(0, 0, 0, 0.7); /* 增强文本阴影 */
+            letter-spacing: 2.5px; /* 增加字间距 */
             text-align: center;
-            padding: 15px 30px;
-            background: rgba(10, 10, 30, 0.6);
+            padding: 20px 35px; /* 增加内边距 */
+            background: rgba(10, 10, 30, 0.75); /* 增加背景不透明度 */
             border-radius: 12px;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             z-index: 2;
             animation: fadeIn 1.5s ease-out;
             max-width: 90%;
+            font-weight: 700; /* 增加字体粗细 */
         }
         
         .main-content {
@@ -155,11 +156,12 @@
         }
         
         .icon-label {
-            color: #c0c0c0;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            margin-top: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            color: #e0e0e0; /* 调亮标签颜色 */
+            font-size: 1.1rem; /* 增大字体 */
+            letter-spacing: 0.8px; /* 增加字间距 */
+            margin-top: 12px; /* 增加上边距 */
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); /* 增强文本阴影 */
+            font-weight: 600; /* 增加字体粗细 */
         }
         
         .cafe-icon {
@@ -179,12 +181,12 @@
         }
         
         .dialogue-box {
-            /* 更暗淡的文本框色调 */
-            background: linear-gradient(145deg, rgba(30, 30, 46, 0.9), rgba(42, 42, 58, 0.9));
+            /* 调整文本框色调以提高可读性 */
+            background: linear-gradient(145deg, rgba(25, 25, 40, 0.95), rgba(35, 35, 50, 0.95));
             border-radius: 15px;
-            padding: 25px 25px 60px;
+            padding: 30px 30px 70px; /* 增加内边距 */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             position: relative;
             overflow: hidden;
             height: 100%;
@@ -202,19 +204,20 @@
         }
         
         .dialogue-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #e8cda5;
+            font-size: 1.8rem; /* 增大标题字体 */
+            margin-bottom: 25px; /* 增加下边距 */
+            color: #f0d5b0; /* 调亮标题颜色 */
             text-align: center;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1.5px; /* 增加字间距 */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* 增强文本阴影 */
+            font-weight: 700; /* 增加字体粗细 */
         }
         
         .dialogue-text {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.15rem; /* 增大正文字体 */
+            line-height: 1.8; /* 增加行高 */
             text-align: justify;
-            color: #d0d0d0;
+            color: #e0e0e0; /* 调亮文本颜色 */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -231,32 +234,33 @@
         
         .typewriter-text {
             overflow: hidden;
-            border-right: .10em solid #e8cda5;
+            border-right: .12em solid #f0d5b0; /* 加粗光标 */
             white-space: pre-wrap;
             margin: 0 auto;
-            letter-spacing: .03em;
+            letter-spacing: .05em; /* 增加字间距 */
             animation: 
                 blink-caret .75s step-end infinite;
             max-height: 100%;
             overflow-y: auto;
-            padding: 5px 10px;
+            padding: 10px 15px; /* 增加内边距 */
+            font-weight: 500; /* 增加字体粗细 */
         }
         
         .quote-mark {
-            font-size: 4rem;
-            color: rgba(232, 205, 165, 0.15);
+            font-size: 4.5rem; /* 增大引号大小 */
+            color: rgba(240, 213, 176, 0.2); /* 调亮引号颜色 */
             position: absolute;
             font-family: Georgia, serif;
         }
         
         .quote-start {
-            top: 10px;
-            left: 15px;
+            top: 15px;
+            left: 20px;
         }
         
         .quote-end {
-            bottom: 10px;
-            right: 15px;
+            bottom: 15px;
+            right: 20px;
         }
         
         .pagination {
@@ -265,29 +269,30 @@
             gap: 15px;
             margin-top: 15px;
             position: absolute;
-            bottom: 20px;
+            bottom: 25px; /* 增加底部距离 */
             left: 0;
             right: 0;
         }
         
         .page-btn {
-            background: linear-gradient(to right, #4d2e1d, #3a2318);
-            color: #e8cda5;
+            background: linear-gradient(to right, #5d3e2d, #4a3328); /* 调亮按钮背景 */
+            color: #f0d5b0; /* 调亮按钮文本 */
             border: none;
-            padding: 8px 15px;
+            padding: 10px 18px; /* 增加按钮内边距 */
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 1rem; /* 增大按钮字体 */
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5); /* 增强按钮阴影 */
             position: relative;
             overflow: hidden;
             z-index: 1;
+            font-weight: 600; /* 增加字体粗细 */
         }
         
         .page-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.7);
         }
         
         .page-btn::before {
@@ -297,7 +302,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, #5d3e2d, #4a3328);
+            background: linear-gradient(to right, #6d4e3d, #5a4338);
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -310,34 +315,36 @@
         
         .page-indicator {
             display: flex;
-            gap: 8px;
+            gap: 10px; /* 增加点间距 */
             align-items: center;
             justify-content: center;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         
         .page-dot {
-            width: 10px;
-            height: 10px;
+            width: 12px; /* 增大点大小 */
+            height: 12px;
             border-radius: 50%;
-            background: rgba(232, 205, 165, 0.3);
+            background: rgba(240, 213, 176, 0.4); /* 调亮点颜色 */
             transition: all 0.3s ease;
         }
         
         .page-dot.active {
-            background: #e8cda5;
-            transform: scale(1.2);
+            background: #f0d5b0; /* 调亮活动点颜色 */
+            transform: scale(1.3); /* 增大活动点 */
+            box-shadow: 0 0 8px rgba(240, 213, 176, 0.6); /* 添加发光效果 */
         }
         
         .footer {
             text-align: center;
-            padding: 15px;
-            color: #888;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(10, 10, 20, 0.7);
+            padding: 18px; /* 增加内边距 */
+            color: #aaa; /* 调亮页脚文本 */
+            font-size: 1rem; /* 增大字体 */
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(15, 15, 25, 0.8); /* 调亮背景 */
             backdrop-filter: blur(5px);
             flex-shrink: 0;
+            font-weight: 500; /* 增加字体粗细 */
         }
         
         @media (max-width: 1000px) {
@@ -353,7 +360,7 @@
                 flex-direction: row;
                 justify-content: center;
                 gap: 30px;
-                padding: 10px 0;
+                padding: 15px 0; /* 增加内边距 */
             }
             
             .left-icons, .right-icons {
@@ -361,12 +368,12 @@
             }
             
             .header h1 {
-                font-size: 2rem;
-                padding: 10px 20px;
+                font-size: 2.2rem; /* 调整响应式字体大小 */
+                padding: 12px 22px;
             }
             
             .dialogue-box {
-                padding: 20px 20px 60px;
+                padding: 25px 25px 70px;
             }
             
             body, html {
@@ -380,27 +387,32 @@
             }
             
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem; /* 调整响应式字体大小 */
             }
             
             .icon {
-                width: 60px;
-                height: 60px;
+                width: 65px; /* 调整图标大小 */
+                height: 65px;
             }
             
             .icon i {
-                font-size: 25px;
+                font-size: 28px; /* 调整图标字体大小 */
             }
             
             .icon-label {
-                font-size: 0.8rem;
+                font-size: 0.95rem; /* 调整标签字体大小 */
             }
             
             .dialogue-title {
-                font-size: 1.2rem;
+                font-size: 1.4rem; /* 调整标题字体大小 */
             }
             
             .dialogue-text {
+                font-size: 1rem; /* 调整正文字体大小 */
+            }
+            
+            .page-btn {
+                padding: 8px 15px;
                 font-size: 0.9rem;
             }
         }
@@ -419,7 +431,26 @@
         
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #e8cda5; }
+            50% { border-color: #f0d5b0; } /* 调整光标颜色 */
+        }
+        
+        /* 添加滚动条样式 */
+        .typewriter-text::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .typewriter-text::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .typewriter-text::-webkit-scrollbar-thumb {
+            background: rgba(240, 213, 176, 0.5);
+            border-radius: 10px;
+        }
+        
+        .typewriter-text::-webkit-scrollbar-thumb:hover {
+            background: rgba(240, 213, 176, 0.7);
         }
     </style>
 </head>
