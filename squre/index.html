@@ -19,19 +19,19 @@
         }
         
         body {
-            color: #f0f0f0; /* 调亮默认文本颜色 */
+            color: #ffffff; 
             min-height: 100vh;
             position: relative;
             /* 全屏背景图片 */
             background: url('images/background.jpg') no-repeat center center fixed;
             background-size: cover;
-            /* 背景亮度调整到40 */
-            filter: brightness(40%);
+            /* 提升整体亮度：从40%上调至80% */
+            filter: brightness(80%);
             display: flex;
             flex-direction: column;
         }
         
-        /* 恢复内容区域的亮度 */
+        /* 保持内容区域的高清晰度 */
         .container, .header, .footer {
             filter: brightness(100%);
         }
@@ -48,20 +48,20 @@
         }
         
         .header h1 {
-            color: #ffffff; /* 改为纯白色 */
-            font-size: 3.8vw; /* 增大字体 */
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 2px 5px rgba(0, 0, 0, 0.7); /* 增强文本阴影 */
-            letter-spacing: 2.5px; /* 增加字间距 */
+            color: #ffffff;
+            font-size: 3.8vw;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+            letter-spacing: 2.5px;
             text-align: center;
-            padding: 20px 35px; /* 增加内边距 */
-            background: rgba(10, 10, 30, 0.75); /* 增加背景不透明度 */
+            padding: 20px 45px;
+            background: rgba(255, 255, 255, 0.15); /* 使用浅色半透明背景 */
             border-radius: 12px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             z-index: 2;
             animation: fadeIn 1.5s ease-out;
             max-width: 90%;
-            font-weight: 700; /* 增加字体粗细 */
+            font-weight: 700;
         }
         
         .main-content {
@@ -91,22 +91,15 @@
             padding: 20px 0;
         }
         
-        .left-icons {
-            align-items: flex-start;
-        }
-        
-        .right-icons {
-            align-items: flex-end;
-        }
+        .left-icons { align-items: flex-start; }
+        .right-icons { align-items: flex-end; }
         
         .icon-item {
             text-align: center;
             transition: all 0.4s ease;
         }
         
-        .icon-item:hover {
-            transform: translateY(-5px);
-        }
+        .icon-item:hover { transform: translateY(-5px); }
         
         .icon {
             width: 80px;
@@ -115,342 +108,151 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.25); /* 图标背景变亮 */
+            backdrop-filter: blur(5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.5);
         }
         
         .icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 20px rgba(232, 205, 165, 0.4);
-        }
-        
-        .icon::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .icon:hover::before {
-            opacity: 1;
+            transform: scale(1.15);
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
         }
         
         .icon i {
             font-size: 35px;
-            color: #e8cda5;
-            transition: all 0.3s ease;
-        }
-        
-        .icon:hover i {
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            color: #ffffff; /* 图标统一白色 */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
         
         .icon-label {
-            color: #e0e0e0; /* 调亮标签颜色 */
-            font-size: 1.1rem; /* 增大字体 */
-            letter-spacing: 0.8px; /* 增加字间距 */
-            margin-top: 12px; /* 增加上边距 */
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7); /* 增强文本阴影 */
-            font-weight: 600; /* 增加字体粗细 */
-        }
-        
-        .cafe-icon {
-            background: linear-gradient(145deg, #4d2e1d, #3a2318);
-        }
-        
-        .cap-icon {
-            background: linear-gradient(145deg, #1d2e4d, #18233a);
-        }
-        
-        .figure-icon {
-            background: linear-gradient(145deg, #3d4d1d, #2e3a18);
-        }
-        
-        .map-icon {
-            background: linear-gradient(145deg, #4d1d2e, #3a1823);
+            color: #ffffff; /* 标签纯白 */
+            font-size: 1.1rem;
+            letter-spacing: 0.8px;
+            margin-top: 15px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            font-weight: 600;
         }
         
         .dialogue-box {
-            /* 调整文本框色调以提高可读性 */
-            background: linear-gradient(145deg, rgba(25, 25, 40, 0.95), rgba(35, 35, 50, 0.95));
-            border-radius: 15px;
-            padding: 30px 30px 70px; /* 增加内边距 */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.15); /* 文本框背景透明明亮 */
+            border-radius: 20px;
+            padding: 40px 40px 80px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             position: relative;
-            overflow: hidden;
+            backdrop-filter: blur(12px);
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(5px);
-        }
-        
-        .dialogue-content {
-            position: relative;
-            z-index: 1;
-            flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
         
         .dialogue-title {
-            font-size: 1.8rem; /* 增大标题字体 */
-            margin-bottom: 25px; /* 增加下边距 */
-            color: #f0d5b0; /* 调亮标题颜色 */
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #ffffff;
             text-align: center;
-            letter-spacing: 1.5px; /* 增加字间距 */
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* 增强文本阴影 */
-            font-weight: 700; /* 增加字体粗细 */
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
         }
         
         .dialogue-text {
-            font-size: 1.15rem; /* 增大正文字体 */
-            line-height: 1.8; /* 增加行高 */
-            text-align: justify;
-            color: #e0e0e0; /* 调亮文本颜色 */
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #ffffff;
+            font-weight: 500;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
         }
-        
-        .typewriter {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
+
         .typewriter-text {
-            overflow: hidden;
-            border-right: .12em solid #f0d5b0; /* 加粗光标 */
+            border-right: .15em solid #ffffff;
             white-space: pre-wrap;
-            margin: 0 auto;
-            letter-spacing: .05em; /* 增加字间距 */
-            animation: 
-                blink-caret .75s step-end infinite;
-            max-height: 100%;
-            overflow-y: auto;
-            padding: 10px 15px; /* 增加内边距 */
-            font-weight: 500; /* 增加字体粗细 */
+            animation: blink-caret .75s step-end infinite;
         }
         
         .quote-mark {
-            font-size: 4.5rem; /* 增大引号大小 */
-            color: rgba(240, 213, 176, 0.2); /* 调亮引号颜色 */
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.3);
             position: absolute;
             font-family: Georgia, serif;
         }
         
-        .quote-start {
-            top: 15px;
-            left: 20px;
-        }
-        
-        .quote-end {
-            bottom: 15px;
-            right: 20px;
-        }
+        .quote-start { top: 10px; left: 20px; }
+        .quote-end { bottom: 60px; right: 20px; }
         
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 20px;
             position: absolute;
-            bottom: 25px; /* 增加底部距离 */
+            bottom: 30px;
             left: 0;
             right: 0;
         }
         
         .page-btn {
-            background: linear-gradient(to right, #5d3e2d, #4a3328); /* 调亮按钮背景 */
-            color: #f0d5b0; /* 调亮按钮文本 */
-            border: none;
-            padding: 10px 18px; /* 增加按钮内边距 */
-            border-radius: 20px;
-            font-size: 1rem; /* 增大按钮字体 */
+            background: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5); /* 增强按钮阴影 */
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-weight: 600; /* 增加字体粗细 */
+            font-weight: 700;
+            backdrop-filter: blur(5px);
         }
         
-        .page-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.7);
+        .page-btn:hover:not(:disabled) {
+            background: #ffffff;
+            color: #333;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
         }
-        
-        .page-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, #6d4e3d, #5a4338);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 20px;
-        }
-        
-        .page-btn:hover::before {
-            opacity: 1;
-        }
-        
-        .page-indicator {
-            display: flex;
-            gap: 10px; /* 增加点间距 */
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
+
+        .page-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
         
         .page-dot {
-            width: 12px; /* 增大点大小 */
+            width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(240, 213, 176, 0.4); /* 调亮点颜色 */
+            background: rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
         
         .page-dot.active {
-            background: #f0d5b0; /* 调亮活动点颜色 */
-            transform: scale(1.3); /* 增大活动点 */
-            box-shadow: 0 0 8px rgba(240, 213, 176, 0.6); /* 添加发光效果 */
+            background: #ffffff;
+            transform: scale(1.4);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
         .footer {
             text-align: center;
-            padding: 18px; /* 增加内边距 */
-            color: #aaa; /* 调亮页脚文本 */
-            font-size: 1rem; /* 增大字体 */
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(15, 15, 25, 0.8); /* 调亮背景 */
-            backdrop-filter: blur(5px);
-            flex-shrink: 0;
-            font-weight: 500; /* 增加字体粗细 */
+            padding: 20px;
+            color: #ffffff;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
         }
-        
-        @media (max-width: 1000px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr auto;
-                gap: 20px;
-                max-height: none;
-                overflow-y: auto;
-            }
-            
-            .icon-grid {
-                flex-direction: row;
-                justify-content: center;
-                gap: 30px;
-                padding: 15px 0; /* 增加内边距 */
-            }
-            
-            .left-icons, .right-icons {
-                align-items: center;
-            }
-            
-            .header h1 {
-                font-size: 2.2rem; /* 调整响应式字体大小 */
-                padding: 12px 22px;
-            }
-            
-            .dialogue-box {
-                padding: 25px 25px 70px;
-            }
-            
-            body, html {
-                overflow: auto;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .header {
-                height: 20vh;
-            }
-            
-            .header h1 {
-                font-size: 1.8rem; /* 调整响应式字体大小 */
-            }
-            
-            .icon {
-                width: 65px; /* 调整图标大小 */
-                height: 65px;
-            }
-            
-            .icon i {
-                font-size: 28px; /* 调整图标字体大小 */
-            }
-            
-            .icon-label {
-                font-size: 0.95rem; /* 调整标签字体大小 */
-            }
-            
-            .dialogue-title {
-                font-size: 1.4rem; /* 调整标题字体大小 */
-            }
-            
-            .dialogue-text {
-                font-size: 1rem; /* 调整正文字体大小 */
-            }
-            
-            .page-btn {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
+
+        /* 动画 */
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #f0d5b0; } /* 调整光标颜色 */
+            50% { border-color: #ffffff; }
         }
-        
-        /* 添加滚动条样式 */
-        .typewriter-text::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .typewriter-text::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-        
-        .typewriter-text::-webkit-scrollbar-thumb {
-            background: rgba(240, 213, 176, 0.5);
-            border-radius: 10px;
-        }
-        
-        .typewriter-text::-webkit-scrollbar-thumb:hover {
-            background: rgba(240, 213, 176, 0.7);
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -461,24 +263,22 @@
     
     <div class="main-content">
         <div class="container">
-            <!-- Left Icons -->
             <div class="icon-grid left-icons">
                 <div class="icon-item">
-                    <a href="https://amber2713.github.io/cafe-1958/" class="icon cafe-icon">
+                    <a href="https://amber2713.github.io/cafe-1958/" class="icon">
                         <i class="fas fa-coffee"></i>
                     </a>
                     <div class="icon-label">Cafe & Lounge</div>
                 </div>
                 
                 <div class="icon-item">
-                    <a href="https://amber2713.github.io/test/map/" class="icon map-icon">
+                    <a href="https://amber2713.github.io/test/map/" class="icon">
                         <i class="fas fa-map-marked-alt"></i>
                     </a>
                     <div class="icon-label">Campus Map</div>
                 </div>
             </div>
             
-            <!-- Center Content -->
             <div class="dialogue-box">
                 <div class="quote-mark quote-start">"</div>
                 <div class="dialogue-content">
@@ -492,36 +292,29 @@
                 <div class="quote-mark quote-end">"</div>
                 
                 <div class="pagination">
-                    <button id="prevBtn" class="page-btn">
-                        <i class="fas fa-arrow-left"></i> Prev
-                    </button>
-                    
+                    <button id="prevBtn" class="page-btn"><i class="fas fa-arrow-left"></i> Prev</button>
                     <div class="page-indicator">
                         <div class="page-dot active" id="dot1"></div>
                         <div class="page-dot" id="dot2"></div>
                         <div class="page-dot" id="dot3"></div>
                     </div>
-                    
-                    <button id="nextBtn" class="page-btn">
-                        Next <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <button id="nextBtn" class="page-btn">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
             
-            <!-- Right Icons -->
             <div class="icon-grid right-icons">
                 <div class="icon-item">
-                    <a href="https://amber2713.github.io/sitetone/gifted/" class="icon cap-icon">
+                    <a href="https://amber2713.github.io/sitetone/gifted/" class="icon">
                         <i class="fas fa-graduation-cap"></i>
                     </a>
                     <div class="icon-label">Gifted Program</div>
                 </div>
                 
                 <div class="icon-item">
-                    <a href="https://amber2713.github.io/sitetone/memorial/" class="icon figure-icon">
+                    <a href="https://amber2713.github.io/sitetone/memorial/" class="icon">
                         <i class="fas fa-user-friends"></i>
                     </a>
-                    <div class="icon-label">PORTRAIT OF GUO MORUO</div>
+                    <div class="icon-label">Portrait of Guo Moruo</div>
                 </div>
             </div>
         </div>
@@ -532,12 +325,9 @@
     </div>
 
     <script>
-        // Text content for each page
         const pages = [
             "I remember Guo Moruo Square as one of the few sanctuaries during my demanding study years. At any hour, you could find students scattered across the grass, textbooks open but eyes gazing upward, finding solace in the open sky above.",
-            
             "What made this space extraordinary was the harmony of sounds: the delighted laughter of neighborhood children chasing kites mingled with earnest philosophical debates beneath the ancient oak.",
-            
             "The square served as a living metaphor for the university—where youthful energy met academic rigor, and community blended with scholarship. In the golden hour before sunset, everything paused in perfect balance."
         ];
         
@@ -546,13 +336,10 @@
         const textElement = document.getElementById('typewriter-text');
         const dots = document.querySelectorAll('.page-dot');
         
-        // Function to type out text with typing effect
         function typeText(text, element) {
             clearInterval(typingInterval);
-            
             let charIndex = 0;
             element.innerHTML = '';
-            
             typingInterval = setInterval(() => {
                 if (charIndex < text.length) {
                     element.innerHTML += text.charAt(charIndex);
@@ -563,62 +350,29 @@
             }, 30);
         }
         
-        // Function to update page
         function updatePage(pageIndex) {
             currentPage = pageIndex;
-            
-            // Update active dot
             dots.forEach((dot, index) => {
-                if (index === currentPage) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
+                dot.classList.toggle('active', index === currentPage);
             });
-            
-            // Type out the text for the current page
             typeText(pages[currentPage], textElement);
-            
-            // Update button states
             document.getElementById('prevBtn').disabled = (currentPage === 0);
             document.getElementById('nextBtn').disabled = (currentPage === pages.length - 1);
         }
         
-        // Event listeners for pagination
         document.getElementById('prevBtn').addEventListener('click', () => {
-            if (currentPage > 0) {
-                updatePage(currentPage - 1);
-            }
+            if (currentPage > 0) updatePage(currentPage - 1);
         });
         
         document.getElementById('nextBtn').addEventListener('click', () => {
-            if (currentPage < pages.length - 1) {
-                updatePage(currentPage + 1);
-            }
+            if (currentPage < pages.length - 1) updatePage(currentPage + 1);
         });
         
-        // Event listeners for dot navigation
         dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                updatePage(index);
-            });
+            dot.addEventListener('click', () => updatePage(index));
         });
         
-        // Initialize with first page
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePage(0);
-            
-            // Add interactive effects to icons
-            document.querySelectorAll('.icon').forEach(icon => {
-                icon.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.1) rotate(3deg)';
-                });
-                
-                icon.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1) rotate(0)';
-                });
-            });
-        });
+        document.addEventListener('DOMContentLoaded', () => updatePage(0));
     </script>
 </body>
 </html>
