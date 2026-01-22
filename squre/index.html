@@ -95,6 +95,7 @@
             transition: all 0.4s ease;
         }
         
+        /* 修改后的图标容器样式 */
         .icon {
             width: 80px;
             height: 80px;
@@ -102,12 +103,15 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(5px);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            /* 1. 提高背景亮度和对比度 */
+            background: rgba(255, 255, 255, 0.25); 
+            backdrop-filter: blur(8px);
+            /* 2. 增加更明显的外部发光，使其从背景中跳脱出来 */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* 3. 强化边框颜色 */
+            border: 2px solid rgba(255, 255, 255, 0.6); 
         }
         
         .icon:hover {
@@ -116,18 +120,46 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
         
+        /* 4. 修改图标本身的颜色为纯白，增加阴影 */
         .icon i {
             font-size: 35px;
-            color: #E0E0E0;
+            color: #FFFFFF; /* 纯白比 E0E0E0 更显眼 */
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+        
+        /* 5. 悬停时的增强效果 */
+        .icon:hover {
+            transform: scale(1.15) rotate(5deg); /* 增加一点旋转感 */
+            background: rgba(255, 255, 255, 0.4);
+            border-color: #FFFFFF;
+            /* 霓虹发光感 */
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* 6. 可选：为不同功能的图标添加专属色调（更加显眼） */
+        .left-icons .icon:hover { 
+            box-shadow: 0 0 30px rgba(74, 144, 226, 0.8); /* 地图蓝色光 */
+            border-color: #4A90E2;
+        }
+        
+        .right-icons .icon-item:first-child .icon:hover { 
+            box-shadow: 0 0 30px rgba(245, 166, 35, 0.8); /* 少年班金色光 */
+            border-color: #F5A623;
+        }
+        
+        .right-icons .icon-item:last-child .icon:hover { 
+            box-shadow: 0 0 30px rgba(80, 227, 194, 0.8); /* 纪念像青色光 */
+            border-color: #50E3C2;
         }
         
         .icon-label {
-            color: #E0E0E0;
+            color: #FFFFFF; /* 改为纯白 */
             font-size: 1rem;
-            letter-spacing: 0.8px;
+            letter-spacing: 1.2px;
             margin-top: 15px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-            font-weight: 600;
+            /* 增强文字背后的阴影，防止被背景吞没 */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 1), 0 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 700;
             text-transform: uppercase;
         }
         
