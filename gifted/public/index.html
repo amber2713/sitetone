@@ -142,25 +142,9 @@
             box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
         }
         
-        /* 返回图标设计 */
-        #backBtn {
-            position: relative;
-        }
-        
-        #backBtn::before {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-top: 3px solid #3498db;
-            border-left: 3px solid #3498db;
-            transform: rotate(-45deg);
-            transition: all 0.3s ease;
-        }
-        
-        #backBtn:hover::before {
-            width: 25px;
-            height: 25px;
+        /* 咖啡馆图标设计 */
+        #coffeeBtn i {
+            font-size: 24px;
         }
         
         /* 搜索图标设计 */
@@ -238,8 +222,9 @@
         .dialog {
             position: fixed;
             left: 28px;
-            bottom: 24px;
-            width: min(380px, calc(100vw - 56px));
+            top: 30%;
+            width: min(420px, calc(100vw - 56px));
+            max-width: 420px;
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid #3498db;
             border-radius: 15px;
@@ -250,13 +235,101 @@
             backdrop-filter: blur(5px);
             animation: dialogFadeIn 0.5s ease;
         }
-        
+
         @keyframes dialogFadeIn {
-            from { opacity: 0; transform: translateY(16px); }
+            from { opacity: 0; transform: translateY(-16px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .dialog p {
+
+        .character-chat {
+            position: fixed;
+            left: 28px;
+            bottom: 20px;
+            width: min(420px, calc(100vw - 56px));
+            z-index: 210;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ai-chat {
+            width: 100%;
+        }
+
+        .ai-chat-panel {
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid rgba(52, 152, 219, 0.35);
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+            padding: 14px;
+        }
+
+        .ai-chat-messages {
+            max-height: 140px;
+            overflow-y: auto;
+            padding: 10px 8px 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #2c3e50;
+            text-align: left;
+            background: rgba(248, 249, 250, 0.95);
+            border-radius: 14px;
+            margin-bottom: 10px;
+        }
+
+        .ai-chat-message {
+            margin-bottom: 8px;
+        }
+
+        .ai-chat-message strong {
+            color: #2980b9;
+        }
+
+        .ai-chat-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .ai-chat-input {
+            flex: 1;
+            min-width: 0;
+            border: 1px solid rgba(52, 152, 219, 0.25);
+            border-radius: 999px;
+            padding: 10px 14px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+            outline: none;
+            background: rgba(255,255,255,0.94);
+        }
+
+        .ai-chat-input:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+        }
+
+        .ai-chat-button {
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 50%;
+            background: #2980b9;
+            color: white;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .ai-chat-button:hover {
+            transform: translateY(-1px);
+            background: #1f6aa8;
+        }
+
+        .ai-chat-button:disabled {
+            cursor: wait;
+            opacity: 0.65;
+            transform: none;
             font-size: 1.05rem;
             line-height: 1.55;
             color: #2c3e50;
@@ -678,11 +751,6 @@
                 height: 45px;
             }
             
-            #backBtn::before {
-                width: 15px;
-                height: 15px;
-            }
-            
             #searchBtn::before {
                 width: 15px;
                 height: 15px;
@@ -725,7 +793,7 @@
     
     <!-- 图标区域 -->
     <div class="icons">
-        <div class="icon" id="backBtn" title="Back to Home"></div>
+        <div class="icon" id="coffeeBtn" title="Go to Coffee Shop"><i class="fas fa-mug-hot"></i></div>
         <div class="icon" id="searchBtn" title="Search Scholar Database"></div>
     </div>
 
@@ -734,10 +802,27 @@
         <img src="./images/guomo_suit_cutout_clean.png" alt="Guo Moruo" class="guomo-character">
     </div>
     
+    <!-- 左下角聊天对话框 -->
+    <div class="character-chat">
+        <div class="ai-chat">
+            <div class="ai-chat-panel">
+                <div class="ai-chat-messages" id="chatDisplay">
+                    <div class="ai-chat-message"><strong>守护者:</strong> 你好，欢迎来到书院。有什么想问我的？</div>
+                </div>
+                <form class="ai-chat-form" id="chatForm">
+                    <input class="ai-chat-input" id="userInput" type="text" placeholder="输入你的问题..." autocomplete="off">
+                    <button class="ai-chat-button" id="sendButton" type="submit" aria-label="发送消息">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- 左侧悬停区域 -->
     <div class="hover-area" id="hoverArea"></div>
     
-    <!-- 左下角对话框 -->
+    <!-- 中间偏左悬停对话内容 -->
     <div class="dialog" id="dialog">
         <p>It seems the students here are quite impressive. I always hear tales of their busy schedules, but there are also many amusing stories. Why is "<strong>SHAO PI</strong>" my first reaction upon entering!</p>
     </div>
@@ -825,11 +910,79 @@
         hoverArea.addEventListener('mouseleave', () => {
             dialog.style.display = 'none';
         });
-        
+
+        // Chat API logic
+        const chatHistory = [];
+        const chatForm = document.getElementById('chatForm');
+        const userInput = document.getElementById('userInput');
+        const chatDisplay = document.getElementById('chatDisplay');
+        const sendButton = document.getElementById('sendButton');
+
+        function escapeHtml(value) {
+            return value
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function addChatMessage(role, content) {
+            const message = document.createElement('div');
+            message.className = 'ai-chat-message';
+            const speaker = role === 'user' ? '你' : '守护者';
+            message.innerHTML = `<strong>${speaker}:</strong> ${escapeHtml(content)}`;
+            chatDisplay.appendChild(message);
+            chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            return message;
+        }
+
+        async function handleChat(text) {
+            chatHistory.push({ role: 'user', content: text });
+            addChatMessage('user', text);
+
+            const loadingMessage = addChatMessage('assistant', '守护者正在思考...');
+            if (sendButton) sendButton.disabled = true;
+
+            try {
+                const response = await fetch('/.netlify/functions/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: chatHistory })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Request failed: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const content = data.content || '守护者暂时沉默了，请稍后再试。';
+                chatHistory.push({ role: 'assistant', content });
+                loadingMessage.innerHTML = `<strong>守护者:</strong> ${escapeHtml(content)}`;
+            } catch (error) {
+                loadingMessage.innerHTML = '<strong>守护者:</strong> 风把我的回答吹走了，请稍后再试。';
+            } finally {
+                if (sendButton) sendButton.disabled = false;
+                if (userInput) userInput.focus();
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            }
+        }
+
+        function handleChatSubmission(event) {
+            event.preventDefault();
+            const text = userInput.value.trim();
+            if (!text) return;
+            userInput.value = '';
+            handleChat(text);
+        }
+
+        if (chatForm) {
+            chatForm.addEventListener('submit', handleChatSubmission);
+        }
+
         // 搜索功能
         const searchBtn = document.getElementById('searchBtn');
         const searchModal = document.getElementById('searchModal');
-        const backBtn = document.getElementById('backBtn');
         const verifyBtn = document.getElementById('verifyBtn');
         const accountInput = document.getElementById('accountInput');
         const result = document.getElementById('result');
@@ -843,9 +996,12 @@
             }, 100);
         });
         
-        backBtn.addEventListener('click', () => {
-            window.location.href = 'https://amber2713.github.io/sitetone/squre';
-        });
+        const coffeeBtn = document.getElementById('coffeeBtn');
+        if (coffeeBtn) {
+            coffeeBtn.addEventListener('click', () => {
+                window.location.href = 'https://app.netlify.com/projects/qianxuesen/overview';
+            });
+        }
         
         verifyBtn.addEventListener('click', () => {
             const account = accountInput.value;
