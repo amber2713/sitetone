@@ -414,6 +414,36 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* ====================== 新增：随机故事弹出层样式 ====================== */
+        #storyPopup {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            max-width: 85vw;
+            padding: 30px 35px;
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            z-index: 9999;
+            display: none;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        #storyTrigger {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            z-index: 10;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -451,7 +481,7 @@
                         <div class="page-dot" id="dot2"></div>
                         <div class="page-dot" id="dot3"></div>
                     </div>
-                    <button id="nextBtn" class="page-btn">Next <i class="fas fa-arrow-right"></i></button>
+                    <button id="nextBtn" class="page-btn">Next <i class="fas fa-arrow-right"></i> Next</button>
                 </div>
             </div>
 
@@ -478,11 +508,13 @@
             </div>
 
             <div class="icon-grid right-icons">
-                <div class="icon-item">
+                <div class="icon-item" style="position:relative;">
                     <a href="https://ggifgifted.netlify.app/" class="icon">
                         <i class="fas fa-graduation-cap"></i>
                     </a>
                     <div class="icon-label">Gifted Program</div>
+                    <!-- 新增：点击触发区（少年班图标右侧 3 倍半径，大小相同） -->
+                    <div id="storyTrigger"></div>
                 </div>
                 
                 <div class="icon-item">
@@ -498,6 +530,9 @@
     <div class="footer">
         Guo Moruo Square © 2023 | A Place of Reflection, Learning, and Community
     </div>
+
+    <!-- 新增：故事弹出层 -->
+    <div id="storyPopup"></div>
 
     <script>
         const pages = [
@@ -617,6 +652,39 @@
                 handleChat(text);
             });
         }
+
+        /* ====================== 新增：随机故事点击功能 ====================== */
+        const stories = [
+            "12-year-old Xie Yanbo Asked His Teacher to Alter His Trousers: Xie Yanbo, the youngest student in the first cohort of the Youngster Class, was only 12 upon enrollment. Still immature in self-care, he found his newly bought sweatpants inconvenient for toilet use. Clinging to his head teacher like a child to his parent, he begged the teacher to cut an opening and hem the front of the trousers.",
+            "Late-night Dorm Chats End with Sudden Self-study: After lights-out, teenage prodigies debated topics from astrophysics, quantum mechanics to history and philosophy. Once they felt guilty about wasting time, the whole group got up instantly and headed for self-study.",
+            "Top Student Di Yu Cried over 'Failed Exam', Yet Topped the Class: Di Yu was the nation’s top scorer. After one exam, he cried and refused meals, claiming failure. But he still ranked first. In an elective exam, he handed in paper in 20 minutes and scored full marks.",
+            "Half-month Self-study Led to Passing Advanced Exam: Four students learned Complex Variables independently for half a month and took the senior final exam. All passed with high scores, two got full marks, and they were exempted from the course.",
+            "Zhang Yaqin’s Loud Snoring Became a Classic Joke: Zhang Yaqin, later Microsoft vice president, snored loudly at college. Decades later, alumni still teased him about it at reunions, and he would bow and apologize every time.",
+            "Football Team Talks Shift from Matches to Math: Players rarely discussed stars or transfers. They chatted about mathematical logic during breaks, and even described crowd density with crystal structure terms.",
+            "Magic Student Wowed School with Fire-to-Rose Trick: Zhang Haoyu, a 2009 student, practiced magic for years. He performed fire-to-rose at the school gala and became famous across the campus.",
+            "Versatile Prodigies Led Many Clubs: Many students mastered traditional instruments to Grade 10, led over a dozen school clubs, and won championships in basketball, go, and choir.",
+            "Students Complain Dining Wastes Study Time: Many thought walking to canteens wasted time. The unofficial standard was 60 study hours per week. Many studied until 1–2 AM and got up at 6:30 AM."
+        ];
+
+        const storyPopup = document.getElementById('storyPopup');
+        const storyTrigger = document.getElementById('storyTrigger');
+
+        // 定位：少年班图标右侧 3 倍半径
+        storyTrigger.style.left = '240px';
+        storyTrigger.style.top = '0px';
+
+        // 点击显示随机故事
+        storyTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const random = stories[Math.floor(Math.random() * stories.length)];
+            storyPopup.textContent = random;
+            storyPopup.style.display = 'block';
+        });
+
+        // 点击任意其他地方关闭
+        document.addEventListener('click', () => {
+            storyPopup.style.display = 'none';
+        });
     </script>
 </body>
 </html>
