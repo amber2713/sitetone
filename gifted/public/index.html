@@ -807,11 +807,11 @@
         <div class="ai-chat">
             <div class="ai-chat-panel">
                 <div class="ai-chat-messages" id="chatDisplay">
-                    <div class="ai-chat-message"><strong>守护者:</strong> 你好，欢迎来到书院。有什么想问我的？</div>
+                    <div class="ai-chat-message"><strong>Guomo:</strong> Welcome to the School of Gifted Young! Feel free to any questions.</div>
                 </div>
                 <form class="ai-chat-form" id="chatForm">
-                    <input class="ai-chat-input" id="userInput" type="text" placeholder="输入你的问题..." autocomplete="off">
-                    <button class="ai-chat-button" id="sendButton" type="submit" aria-label="发送消息">
+                    <input class="ai-chat-input" id="userInput" type="text" placeholder="Input your questions..." autocomplete="off">
+                    <button class="ai-chat-button" id="sendButton" type="submit" aria-label="Conveying massage">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </form>
@@ -956,7 +956,7 @@
                 }
 
                 const data = await response.json();
-                const content = data.content || '守护者暂时沉默了，请稍后再试。';
+                const content = data.content || 'Guomo is silent, wait a minute...';
                 chatHistory.push({ role: 'assistant', content });
                 loadingMessage.innerHTML = `<strong>守护者:</strong> ${escapeHtml(content)}`;
             } catch (error) {
