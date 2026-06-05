@@ -930,7 +930,7 @@
         function addChatMessage(role, content) {
             const message = document.createElement('div');
             message.className = 'ai-chat-message';
-            const speaker = role === 'user' ? '你' : '守护者';
+            const speaker = role === 'user' ? 'you' : 'Guomo';
             message.innerHTML = `<strong>${speaker}:</strong> ${escapeHtml(content)}`;
             chatDisplay.appendChild(message);
             chatDisplay.scrollTop = chatDisplay.scrollHeight;
@@ -941,7 +941,7 @@
             chatHistory.push({ role: 'user', content: text });
             addChatMessage('user', text);
 
-            const loadingMessage = addChatMessage('assistant', '守护者正在思考...');
+            const loadingMessage = addChatMessage('assistant', 'Thinking...');
             if (sendButton) sendButton.disabled = true;
 
             try {
@@ -958,9 +958,9 @@
                 const data = await response.json();
                 const content = data.content || 'Guomo is silent, wait a minute...';
                 chatHistory.push({ role: 'assistant', content });
-                loadingMessage.innerHTML = `<strong>守护者:</strong> ${escapeHtml(content)}`;
+                loadingMessage.innerHTML = `<strong>Guomo:</strong> ${escapeHtml(content)}`;
             } catch (error) {
-                loadingMessage.innerHTML = '<strong>守护者:</strong> 风把我的回答吹走了，请稍后再试。';
+                loadingMessage.innerHTML = '<strong>Guomo:</strong> The wind blew away my answer, please try again later.';
             } finally {
                 if (sendButton) sendButton.disabled = false;
                 if (userInput) userInput.focus();
