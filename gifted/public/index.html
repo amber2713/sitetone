@@ -807,7 +807,7 @@
         <div class="ai-chat">
             <div class="ai-chat-panel">
                 <div class="ai-chat-messages" id="chatDisplay">
-                    <div class="ai-chat-message"><strong>Guomo:</strong> Welcome to the School of Gifted Young! Feel free to any questions.</div>
+                    <div class="ai-chat-message"><strong>Guo Moruo:</strong> Welcome to the School of Gifted Young! Feel free to any questions.</div>
                 </div>
                 <form class="ai-chat-form" id="chatForm">
                     <input class="ai-chat-input" id="userInput" type="text" placeholder="Input your questions..." autocomplete="off">
@@ -930,7 +930,7 @@
         function addChatMessage(role, content) {
             const message = document.createElement('div');
             message.className = 'ai-chat-message';
-            const speaker = role === 'user' ? 'you' : 'Guomo';
+            const speaker = role === 'user' ? 'you' : 'Guo Moruo';
             message.innerHTML = `<strong>${speaker}:</strong> ${escapeHtml(content)}`;
             chatDisplay.appendChild(message);
             chatDisplay.scrollTop = chatDisplay.scrollHeight;
@@ -956,11 +956,11 @@
                 }
 
                 const data = await response.json();
-                const content = data.content || 'Guomo is silent, wait a minute...';
+                const content = data.content || 'Guo Moruo is silent, wait a minute...';
                 chatHistory.push({ role: 'assistant', content });
-                loadingMessage.innerHTML = `<strong>Guomo:</strong> ${escapeHtml(content)}`;
+                loadingMessage.innerHTML = `<strong>Guo Moruo:</strong> ${escapeHtml(content)}`;
             } catch (error) {
-                loadingMessage.innerHTML = '<strong>Guomo:</strong> The wind blew away my answer, please try again later.';
+                loadingMessage.innerHTML = '<strong>Guo Moruo:</strong> The wind blew away my answer, please try again later.';
             } finally {
                 if (sendButton) sendButton.disabled = false;
                 if (userInput) userInput.focus();
