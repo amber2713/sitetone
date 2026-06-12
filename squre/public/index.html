@@ -19,17 +19,22 @@
         }
         
        body {
-    /* 纯白色字体 */
     color: #FFFFFF;
     min-height: 100vh;
     position: relative;
     background: url('images/background.jpg') no-repeat center center fixed;
     background-size: cover;
-    filter: brightness(80%);
     display: flex;
     flex-direction: column;
 }
-        
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: -1;
+}  
         .container, .header, .footer {
             filter: brightness(100%);
         }
