@@ -48,7 +48,7 @@
             letter-spacing: 2.5px;
             text-align: center;
             padding: 20px 45px;
-            background: rgba(0, 0, 0, 0.3); /* 背景稍微加深以衬托文字 */
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 12px;
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -91,11 +91,9 @@
         .icon-item {
             text-align: center;
             transition: all 0.4s ease;
-            /* 左侧图标整体向左移动半个身位 */
             transform: translateX(-40px);
         }
         
-        /* 修改后的图标容器样式 */
         .icon {
             width: 80px;
             height: 80px;
@@ -103,14 +101,11 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            /* 1. 提高背景亮度和对比度 */
             background: rgba(255, 255, 255, 0.25); 
             backdrop-filter: blur(8px);
-            /* 2. 增加更明显的外部发光，使其从背景中跳脱出来 */
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            /* 3. 强化边框颜色 */
             border: 2px solid rgba(255, 255, 255, 0.6); 
         }
         
@@ -120,51 +115,46 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
         
-        /* 4. 修改图标本身的颜色为纯白，增加阴影 */
         .icon i {
             font-size: 35px;
-            color: #FFFFFF; /* 纯白比 E0E0E0 更显眼 */
+            color: #FFFFFF;
             filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
         }
         
-        /* 5. 悬停时的增强效果 */
         .icon:hover {
-            transform: scale(1.15) rotate(5deg); /* 增加一点旋转感 */
+            transform: scale(1.15) rotate(5deg);
             background: rgba(255, 255, 255, 0.4);
             border-color: #FFFFFF;
-            /* 霓虹发光感 */
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.5);
         }
         
-        /* 6. 可选：为不同功能的图标添加专属色调（更加显眼） */
         .left-icons .icon:hover { 
-            box-shadow: 0 0 30px rgba(74, 144, 226, 0.8); /* 地图蓝色光 */
+            box-shadow: 0 0 30px rgba(74, 144, 226, 0.8);
             border-color: #4A90E2;
         }
         
         .right-icons .icon-item:first-child .icon:hover { 
-            box-shadow: 0 0 30px rgba(245, 166, 35, 0.8); /* 少年班金色光 */
+            box-shadow: 0 0 30px rgba(245, 166, 35, 0.8);
             border-color: #F5A623;
         }
         
         .right-icons .icon-item:last-child .icon:hover { 
-            box-shadow: 0 0 30px rgba(80, 227, 194, 0.8); /* 纪念像青色光 */
+            box-shadow: 0 0 30px rgba(80, 227, 194, 0.8);
             border-color: #50E3C2;
         }
         
         .icon-label {
-            color: #FFFFFF; /* 改为纯白 */
+            color: #FFFFFF;
             font-size: 1rem;
             letter-spacing: 1.2px;
             margin-top: 15px;
-            /* 增强文字背后的阴影，防止被背景吞没 */
             text-shadow: 0 0 10px rgba(0, 0, 0, 1), 0 2px 4px rgba(0, 0, 0, 0.8);
             font-weight: 700;
             text-transform: uppercase;
         }
         
         .dialogue-box {
-            background: rgba(0, 0, 0, 0.4); /* 增加内部黑度，减少刺眼感 */
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 20px;
             padding: 40px 40px 80px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -260,7 +250,6 @@
         .character-chat {
             position: fixed;
             left: 20px;
-            /* 【修改点】bottom 从 20px 改为 -5px，将整体下移，使图片根部贴紧底部，释放头部空间 */
             bottom: -5px; 
             width: 260px;
             z-index: 999;
@@ -272,7 +261,6 @@
 
         .guomo-character {
             width: 220px;
-            /* 【修改点】大屏下最大高度限制稍微收紧，配合定位下移，确保头部绝对不会被切 */
             max-height: 48vh; 
             object-fit: contain;
             filter: drop-shadow(0 12px 24px rgba(0,0,0,0.45));
@@ -282,7 +270,6 @@
         .ai-chat {
             width: 100%;
             color: #E0E0E0;
-            /* 【修改点】给对话框底部加一点内边距，使其不会太死贴屏幕边缘 */
             margin-bottom: 12px; 
         }
 
@@ -368,18 +355,15 @@
             height: 12px;
         }
 
-        /* 避免挡住原页面 */
         @media (max-width: 900px) {
             .character-chat {
                 width: 180px;
                 left: 10px;
-                /* 【修改点】移动端下也同步下移 */
                 bottom: -5px; 
             }
 
             .guomo-character {
                 width: 150px;
-                /* 【修改点】调整移动端最大高度 */
                 max-height: 38vh; 
             }
 
@@ -396,7 +380,7 @@
         .footer {
             text-align: center;
             padding: 20px;
-            color: #B0B0B0; /* 页脚文字稍暗一点 */
+            color: #B0B0B0;
             font-size: 0.9rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(0, 0, 0, 0.4);
@@ -413,7 +397,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ====================== 新增：随机故事弹出层样式 ====================== */
         #storyPopup {
             position: fixed;
             left: 50%;
@@ -511,7 +494,6 @@
                         <i class="fas fa-graduation-cap"></i>
                     </a>
                     <div class="icon-label">Gifted Program</div>
-                    <!-- 新增：点击触发区（少年班图标右侧 3 倍半径，大小相同） -->
                     <div id="storyTrigger"></div>
                 </div>
                 
@@ -525,11 +507,8 @@
         </div>
     </div>
     
-    <div class="footer">
-        Guo Moruo Square © 2023 | A Place of Reflection, Learning, and Community
-    </div>
-
-    <!-- 新增：故事弹出层 -->
+    <!-- 已删除 .footer 黑色边栏 -->
+    
     <div id="storyPopup"></div>
 
     <script>
@@ -651,7 +630,7 @@
             });
         }
 
-        /* ====================== 新增：随机故事点击功能 ====================== */
+        /* ====================== 随机故事点击功能 ====================== */
         const stories = [
             "12-year-old Xie Yanbo Asked His Teacher to Alter His Trousers: Xie Yanbo, the youngest student in the first cohort of the Youngster Class, was only 12 upon enrollment. Still immature in self-care, he found his newly bought sweatpants inconvenient for toilet use. Clinging to his head teacher like a child to his parent, he begged the teacher to cut an opening and hem the front of the trousers.",
             "Late-night Dorm Chats End with Sudden Self-study: After lights-out, teenage prodigies debated topics from astrophysics, quantum mechanics to history and philosophy. Once they felt guilty about wasting time, the whole group got up instantly and headed for self-study.",
@@ -667,11 +646,9 @@
         const storyPopup = document.getElementById('storyPopup');
         const storyTrigger = document.getElementById('storyTrigger');
 
-        // 定位：少年班图标右侧 3 倍半径
         storyTrigger.style.left = '240px';
         storyTrigger.style.top = '0px';
 
-        // 点击显示随机故事
         storyTrigger.addEventListener('click', (e) => {
             e.stopPropagation();
             const random = stories[Math.floor(Math.random() * stories.length)];
@@ -679,7 +656,6 @@
             storyPopup.style.display = 'block';
         });
 
-        // 点击任意其他地方关闭
         document.addEventListener('click', () => {
             storyPopup.style.display = 'none';
         });
